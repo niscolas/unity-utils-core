@@ -5,10 +5,11 @@ using UnityExtensions;
 
 namespace UnityUtils
 {
-	public class ComponentWrappers<TWrapper, TComponent, TProperties>
-		where TWrapper : ComponentWrapper<TComponent, TProperties>, new()
+	public class ComponentWrappers<TWrapper, TComponent, TProperties, THandledProperties>
+		where TWrapper : ComponentWrapper<TComponent, TProperties, THandledProperties>, new()
 		where TComponent : Component
-		where TProperties : IComponentProperties<TComponent>
+		where TProperties : IComponentProperties<TComponent, THandledProperties>
+		where THandledProperties : HandledProperties
 	{
 		private readonly IList<TWrapper> _wrappers = new List<TWrapper>();
 
@@ -21,7 +22,7 @@ namespace UnityUtils
 				Component = component
 			};
 
-			wrapper.SetNewProperties(newProperties);
+			wrapper.SelfApplyProperties(newProperties);
 
 			Add(wrapper);
 		}

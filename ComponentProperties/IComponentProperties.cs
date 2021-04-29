@@ -1,9 +1,12 @@
 ﻿using UnityEngine;
 
-namespace  UnityUtils
+namespace UnityUtils
 {
-	public interface IComponentProperties<in TComponent> where TComponent : Component
+	public interface IComponentProperties<in TComponent, in THandleProperties>
+		where TComponent : Component
+		where THandleProperties : HandledProperties
 	{
-		void ApplyTo(TComponent component);
+		void ApplyAll(TComponent component);
+		void Apply(TComponent component, THandleProperties handledProperties);
 	}
 }

@@ -18,13 +18,14 @@ namespace Plugins.UnityUtils
 		{
 			if (_performOnEnable)
 			{
-				Debug.Log("settings fps");
 				Do();
 			}
 		}
 
 		public override void Do(int entry)
 		{
+			if (!Application.isPlaying) return;
+
 			Application.targetFrameRate = entry;
 		}
 

@@ -2,5 +2,6 @@
 
 namespace UnityUtils
 {
-	public class RigidbodyWrappers : ComponentWrappers<RigidbodyWrapper, Rigidbody, RigidbodyProperties> { }
+	public class RigidbodyWrappers : ComponentWrappers<RigidbodyWrapper, Rigidbody, RigidbodyProperties,
+		RigidbodyHandledProperties> { }
 }

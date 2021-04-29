@@ -2,13 +2,30 @@
 
 namespace UnityUtils
 {
-	public class ColliderProperties : IComponentProperties<Collider>
+	public class ColliderHandledProperties : HandledProperties
+	{
+		public bool CopyPhysicMaterial { get; set; }
+	}
+
+	public class ColliderProperties : IComponentProperties<Collider, ColliderHandledProperties>
 	{
 		public PhysicMaterial PhysicMaterial { get; set; }
 
-		public void ApplyTo(Collider component)
+		public void ApplyAll(Collider component)
 		{
-			component.sharedMaterial = PhysicMaterial;
+			ColliderHandledProperties handledProperties = new ColliderHandledProperties
+			{
+				CopyPhysicMaterial = true
+			};
+			Apply(component, handledProperties);
+		}
+
+		public void Apply(Collider component, ColliderHandledProperties handledProperties)
+		{
+			if (handledProperties.CopyPhysicMaterial)
+			{
+				component.sharedMaterial = PhysicMaterial;
+			}
 		}
 	}
 }

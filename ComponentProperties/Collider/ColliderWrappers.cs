@@ -2,5 +2,6 @@
 
 namespace UnityUtils
 {
-	public class ColliderWrappers : ComponentWrappers<ColliderWrapper, Collider, ColliderProperties> { }
+	public class ColliderWrappers :
+		ComponentWrappers<ColliderWrapper, Collider, ColliderProperties, ColliderHandledProperties> { }
 }
