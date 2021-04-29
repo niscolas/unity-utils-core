@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityExtensions;
 
-namespace Plugins.UnityUtils
+namespace UnityUtils
 {
 	public class LinearLayoutGroup3D : MonoBehaviour
 	{

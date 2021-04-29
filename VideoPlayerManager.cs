@@ -2,8 +2,10 @@
 using UnityEngine.Events;
 using UnityEngine.Video;
 
-namespace Plugins.UnityUtils {
-	public class VideoPlayerManager : MonoBehaviour {
+namespace UnityUtils
+{
+	public class VideoPlayerManager : MonoBehaviour
+	{
 		[Header("Components")]
 		[SerializeField]
 		private VideoPlayer videoPlayer;
@@ -12,11 +14,13 @@ namespace Plugins.UnityUtils {
 		[SerializeField]
 		private UnityEvent onVideoEnded;
 
-		public void Awake() {
+		public void Awake()
+		{
 			videoPlayer.loopPointReached += OnEnd;
 		}
 
-		private void OnEnd(VideoPlayer eventHandler) {
+		private void OnEnd(VideoPlayer eventHandler)
+		{
 			onVideoEnded?.Invoke();
 		}
 	}

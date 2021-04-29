@@ -1,4 +1,4 @@
-﻿namespace UnityAtomsUtils.MonoBehaviourHelpers.MonoEvents
+﻿namespace UnityUtils
 {
 	public class OnEnableEvents : BaseMonoEvents
 	{

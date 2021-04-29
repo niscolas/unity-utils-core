@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Plugins.UnityUtils
+namespace UnityUtils
 {
 	public interface ILifecycleSubject
 	{

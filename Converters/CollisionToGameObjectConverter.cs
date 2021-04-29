@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Plugins.UnityUtils.Converters
+namespace UnityUtils
 {
 	public class CollisionToGameObjectConverter : MonoConverter<Collision, GameObject>
 	{

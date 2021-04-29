@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Plugins.UnityUtils.Services
+namespace UnityUtils
 {
 	public interface IUnitySpawnService
 	{

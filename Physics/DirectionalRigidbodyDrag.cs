@@ -1,6 +1,6 @@
 ﻿using UnityAtoms.BaseAtoms;
-using UnityAtomsUtils.Extensions;
 using UnityEngine;
+using UnityEngine.Assertions;
 using UnityExtensions;
 
 namespace UnityUtils
@@ -24,9 +24,9 @@ namespace UnityUtils
 			}
 		}
 
-		private void Awake()
+		private void Start()
 		{
-			_rigidbody = gameObject.IfNullGetComponentFromRoot(_rigidbody);
+			Assert.IsNotNull(_rigidbody);
 		}
 
 		private void Update()

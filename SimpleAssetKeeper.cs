@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Plugins.UnityUtils
+namespace UnityUtils
 {
 	public class SimpleAssetKeeper : MonoBehaviour
 	{

@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityExtensions;
 
-namespace UnityAtomsUtils.MonoBehaviourHelpers.MonoEvents
+namespace UnityUtils
 {
 	public class DelayedOnEnableEvents : BaseMonoEvents
 	{

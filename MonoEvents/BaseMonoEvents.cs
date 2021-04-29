@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityExtensions;
 
-namespace UnityAtomsUtils.MonoBehaviourHelpers.MonoEvents
+namespace UnityUtils
 {
 	public class BaseMonoEvents : MonoBehaviour
 	{

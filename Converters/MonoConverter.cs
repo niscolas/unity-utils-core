@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
 
-namespace Plugins.UnityUtils.Converters
+namespace UnityUtils
 {
 	public abstract class MonoConverter<TE, TT> : MonoBehaviour
 	{
