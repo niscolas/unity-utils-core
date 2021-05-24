@@ -2,11 +2,11 @@
 
 namespace UnityUtils
 {
-	public interface ILifecycleSubject
+	public interface ILifecycle
 	{
 		event Action OnAwake;
 		event Action OnEnabled;
-		event Action OnStarted;
+		event Action OnStart;
 		event Action OnDisabled;
 		event Action OnDestroyed;
 	}

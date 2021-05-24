@@ -1,58 +1,73 @@
 ﻿#if UNITY_EDITOR
 using Sirenix.OdinInspector;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityExtensions;
+using UnityUtils;
 
 namespace RoadModule
 {
 	public class TileEditor : MonoBehaviour
 	{
-		[OnValueChanged(nameof(UpdateMesh))]
+		[OnValueChanged(nameof(UpdateEditorMesh))]
+		[SerializeField]
+		private GameObject[] _baseTiles;
+
+		[ShowIf("@" + nameof(_baseTiles) + ".Length > 1")]
+		[SerializeField]
+		private MultiTileSpawnType _multiTileSpawnType;
+
+		[OnValueChanged(nameof(UpdateEditorMesh))]
 		[FormerlySerializedAs("_size"), SerializeField]
 		private Vector3Int _quantity;
 
-		[OnValueChanged(nameof(UpdateMesh))]
-		[SerializeField]
-		private GameObject _tile;
-
-		[OnValueChanged(nameof(UpdateTilesPositions))]
+		[OnValueChanged(nameof(UpdateEditorTilesPositions))]
 		[FormerlySerializedAs("_tileSize"), SerializeField]
 		private Vector3 _offset;
-
-		[OnValueChanged(nameof(UpdateTilesPositions))]
-		[SerializeField]
-		private bool _forceUnpack;
 
 		[Header("Debug")]
 		[ReadOnly]
 		[SerializeField]
-		private GameObject[] _tiles;
+		private GameObject[] _existingTiles;
+
+		private static readonly IUnitySpawnService SpawnService = new InstantiateService();
 
 		[Button]
-		private void UpdateMesh()
+		private void UpdateEditorMesh()
 		{
 			Clear();
 
-			_tiles = CreateTiles(_tile, transform.position, _quantity, _offset, transform, _forceUnpack);
+			_existingTiles = CreateTiles(
+				_baseTiles,
+				_multiTileSpawnType,
+				_quantity,
+				_offset,
+				transform);
 		}
 
 		[Button]
-		private void UpdateTilesPositions()
+		private void UpdateEditorTilesPositions()
 		{
-			UpdateTilesPositions(_tiles, transform.position, _quantity, _offset);
+			UpdateTilesPositions(_existingTiles, _quantity, _offset);
 		}
 
 		public static GameObject[] CreateTiles(
-			GameObject tile,
-			Vector3 center,
+			GameObject baseTile,
 			Vector3Int quantity,
 			Vector3 offset,
-			Transform parent = null,
-			bool forceUnpack = false)
+			Transform parent = null)
 		{
-			if (!tile) return default;
+			return CreateTiles(new[] {baseTile}, default, quantity, offset, parent);
+		}
+
+		public static GameObject[] CreateTiles(
+			GameObject[] baseTiles,
+			MultiTileSpawnType multiTileSpawnType,
+			Vector3Int quantity,
+			Vector3 offset,
+			Transform parent = null)
+		{
+			if (baseTiles.IsNullOrEmpty()) return default;
 
 			GameObject[] tiles = new GameObject[quantity.x * quantity.y * quantity.z];
 
@@ -65,25 +80,8 @@ namespace RoadModule
 				{
 					for (int k = 0; k < quantity.z; k++)
 					{
-						GameObject tileInstance;
-						Vector3 position = ComputeTilePosition(i, j, k, center, offset, gridOffset);
-
-						if (tile.IsPartOfPrefab())
-						{
-							tileInstance = PrefabUtility.InstantiatePrefab(tile, parent) as GameObject;
-
-							if (forceUnpack)
-							{
-								PrefabUtility.UnpackPrefabInstance(tileInstance, PrefabUnpackMode.Completely,
-									InteractionMode.AutomatedAction);
-							}
-
-							tileInstance.transform.position = position;
-						}
-						else
-						{
-							tileInstance = Instantiate(tile, position, tile.transform.rotation, parent);
-						}
+						GameObject baseTile = ChooseTile(baseTiles, multiTileSpawnType);
+						GameObject tileInstance = CreateTile(baseTile, offset, parent, i, j, k, gridOffset);
 
 						tiles[counter] = tileInstance;
 						counter++;
@@ -94,13 +92,45 @@ namespace RoadModule
 			return tiles;
 		}
 
+		private static GameObject ChooseTile(GameObject[] baseTiles, MultiTileSpawnType multiTileSpawnType)
+		{
+			return baseTiles[0];
+		}
+
+		private static GameObject CreateTile(
+			GameObject tile,
+			Vector3 offset,
+			Transform parent,
+			int i,
+			int j,
+			int k,
+			Vector3 gridOffset)
+		{
+			Vector3 position = ComputeTilePosition(i, j, k, offset, gridOffset);
+			GameObject tileInstance = SpawnService.Spawn(tile, parent);
+			tileInstance.transform.localPosition = position;
+
+			// if (tile.IsPartOfPrefab())
+			// {
+			// 	tileInstance = PrefabUtility.InstantiatePrefab(tile, parent) as GameObject;
+			//
+			// 	tileInstance.transform.position = position;
+			// }
+			// else
+			// {
+			// 	tileInstance = Instantiate(tile, position, tile.transform.rotation, parent);
+			// }
+
+			return tileInstance;
+		}
+
 		public static Vector3 ComputeGridOffset(Vector3Int quantity, Vector3 offset)
 		{
 			Vector3 result = -(offset.Multiply(quantity - Vector3Int.one) * 0.5f);
 			return result;
 		}
 
-		public static void UpdateTilesPositions(GameObject[] tiles, Vector3 center, Vector3Int quantity, Vector3 offset)
+		public static void UpdateTilesPositions(GameObject[] tiles, Vector3Int quantity, Vector3 offset)
 		{
 			Vector3 gridOffset = ComputeGridOffset(quantity, offset);
 
@@ -111,19 +141,21 @@ namespace RoadModule
 				{
 					for (int k = 0; k < quantity.z; k++)
 					{
-						tiles[counter].transform.position = ComputeTilePosition(i, j, k, center, offset, gridOffset);
+						tiles[counter].transform.localPosition = ComputeTilePosition(i, j, k, offset, gridOffset);
 						counter++;
 					}
 				}
 			}
 		}
 
-		public static Vector3 ComputeTilePosition(int i, int j, int k, Vector3 center, Vector3 offset, Vector3 gridOffset)
+		public static Vector3 ComputeTilePosition(int i, int j, int k, Vector3 offset, Vector3 gridOffset)
 		{
-			Vector3 position = center;
-			position.x += offset.x * i + gridOffset.x;
-			position.y += offset.y * j + gridOffset.y;
-			position.z += offset.z * k + gridOffset.z;
+			Vector3 position = new Vector3
+			{
+				x = offset.x * i + gridOffset.x,
+				y = offset.y * j + gridOffset.y,
+				z = offset.z * k + gridOffset.z
+			};
 
 			return position;
 		}
@@ -132,6 +164,12 @@ namespace RoadModule
 		private void Clear()
 		{
 			transform.DestroyChildren();
+		}
+
+		public enum MultiTileSpawnType
+		{
+			Alternate,
+			Randomize
 		}
 	}
 }
