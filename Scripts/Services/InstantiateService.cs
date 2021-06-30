@@ -6,9 +6,9 @@ namespace UnityUtils
 {
 	public class InstantiateService : IUnitySpawnService
 	{
-		public T Spawn<T>(T prefab, Transform parent = null, bool worldPositionStays = false) where T : Component
+		public T Spawn<T>(T component, Transform parent = null, bool worldPositionStays = false) where T : Component
 		{
-			T instance = Spawn(prefab.gameObject, parent, worldPositionStays).GetComponent<T>();
+			T instance = Spawn(component.gameObject, parent, worldPositionStays).GetComponent<T>();
 			return instance;
 		}
 

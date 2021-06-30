@@ -4,7 +4,7 @@ namespace UnityUtils
 {
 	public class DestroyService : IUnityDespawnService
 	{
-		public void Despawn<T>(T component, bool immediate = false) where T : Component
+		public void Despawn<T>(T component, float delay = 0, bool immediate = false) where T : Component
 		{
 #if UNITY_EDITOR
 			if (!Application.isPlaying || immediate)
@@ -14,10 +14,10 @@ namespace UnityUtils
 			}
 #endif
 
-			Object.Destroy(component);
+			Object.Destroy(component, delay);
 		}
 
-		public void Despawn(GameObject gameObject, bool immediate = false)
+		public void Despawn(GameObject gameObject, float delay = 0, bool immediate = false)
 		{
 #if UNITY_EDITOR
 			if (!Application.isPlaying || immediate)
@@ -27,7 +27,7 @@ namespace UnityUtils
 			}
 #endif
 
-			Object.Destroy(gameObject);
+			Object.Destroy(gameObject, delay);
 		}
 	}
 }
