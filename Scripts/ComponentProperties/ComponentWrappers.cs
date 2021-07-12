@@ -52,7 +52,7 @@ namespace UnityUtils
 				currentTargetData =>
 					currentTargetData.Component == component);
 
-			return !wrapper.IsNull();
+			return !wrapper.IsUnityNull();
 		}
 
 		public bool Contains(TComponent component)

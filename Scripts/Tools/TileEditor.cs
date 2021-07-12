@@ -32,6 +32,7 @@ namespace RoadModule
 
 		private static readonly IUnitySpawnService SpawnService = new InstantiateService();
 
+		[ContextMenu(nameof(UpdateEditorMesh))]
 		[Button]
 		private void UpdateEditorMesh()
 		{

@@ -1,6 +1,4 @@
-﻿using System;
-using Sirenix.OdinInspector;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace UnityUtils
 {
@@ -20,39 +18,33 @@ namespace UnityUtils
 		[SerializeField]
 		private Transform _mirroredTransform;
 
-		[BoxGroup("Position")]
+		[Header("Position")]
 		[SerializeField]
 		private MirrorType _positionXMirrorType = MirrorType.Mirror;
 
-		[BoxGroup("Position")]
 		[SerializeField]
 		private MirrorType _positionYMirrorType = MirrorType.Copy;
 
-		[BoxGroup("Position")]
 		[SerializeField]
 		private MirrorType _positionZMirrorType = MirrorType.Copy;
 
-		[BoxGroup("Rotation")]
+		[Header("Rotation")]
 		[SerializeField]
 		private MirrorType _rotationXMirrorType = MirrorType.Copy;
-
-		[BoxGroup("Rotation")]
+		
 		[SerializeField]
 		private MirrorType _rotationYMirrorType = MirrorType.Mirror;
 
-		[BoxGroup("Rotation")]
 		[SerializeField]
 		private MirrorType _rotationZMirrorType = MirrorType.Mirror;
 
-		[BoxGroup("Scale")]
+		[Header("Scale")]
 		[SerializeField]
 		private MirrorType _scaleXMirrorType = MirrorType.Copy;
 
-		[BoxGroup("Scale")]
 		[SerializeField]
 		private MirrorType _scaleYMirrorType = MirrorType.Copy;
 
-		[BoxGroup("Scale")]
 		[SerializeField]
 		private MirrorType _scaleZMirrorType = MirrorType.Copy;
 
