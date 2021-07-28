@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace niscolas.UnityUtils
 {
+    [SelectionBase]
 	public class Root : MonoBehaviour
 	{
 		private static readonly HashSet<GameObject> RootGameObjects = new HashSet<GameObject>();

@@ -1,10 +1,11 @@
-﻿using UnityAtoms;
+﻿using niscolas.UnityUtils;
+using UnityAtoms;
 using UnityEngine;
 
 namespace UnityAtomsUtils.Actions
 {
 	[CreateAssetMenu(
-		menuName = Constants.ActionsCreateAssetMenuPath + "(Behaviour) => Toggle Enabled State")]
+		menuName = AtomsConstants.ActionsCreateAssetMenuPath + "(Behaviour) => Toggle Enabled State")]
 	public class ToggleComponentState : AtomAction<Behaviour>
 	{
 		public override void Do(Behaviour entry)

@@ -1,11 +1,12 @@
-﻿using UnityAtoms.BaseAtoms;
+﻿using niscolas.UnityUtils;
+using UnityAtoms.BaseAtoms;
 using UnityEngine;
 using UnityEngine.Audio;
 
 namespace UnityAtomsUtils.Actions
 {
 	[CreateAssetMenu(
-		menuName = Constants.ActionsCreateAssetMenuPath + "(float) => Set Exposed Audio Mixer Parameter")]
+		menuName = AtomsConstants.ActionsCreateAssetMenuPath + "(float) => Set Exposed Audio Mixer Parameter")]
 	public class SetAudioMixerExposedFloatParameter : FloatAction
 	{
 		[SerializeField]

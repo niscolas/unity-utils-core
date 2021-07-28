@@ -6,7 +6,7 @@ using UnityEngine;
 namespace UnityUtils
 {
 	[CreateAssetMenu(menuName = AtomsConstants.ActionsCreateAssetMenuPath + "(GameObject) => Despawn")]
-	public class Despawn : AtomAction<GameObject>
+	public class DespawnGameObject : AtomAction<GameObject>
 	{
 		[SerializeField]
 		private FloatReference _delay;
@@ -17,11 +17,6 @@ namespace UnityUtils
 		public override void Do(GameObject gameObject)
 		{
 			_strategy.Despawn(gameObject, _delay.Value);
-		}
-
-		public void DespawnComponent(Component component)
-		{
-			_strategy.Despawn(component, _delay.Value);
 		}
 	}
 }

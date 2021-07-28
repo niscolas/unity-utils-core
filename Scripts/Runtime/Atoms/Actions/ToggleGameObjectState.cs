@@ -1,10 +1,11 @@
-﻿using UnityAtoms;
+﻿using niscolas.UnityUtils;
+using UnityAtoms;
 using UnityEngine;
 
 namespace UnityAtomsUtils.Actions
 {
 	[CreateAssetMenu(
-		menuName = Constants.ActionsCreateAssetMenuPath + "(GameObject) => Toggle Active State")]
+		menuName = AtomsConstants.ActionsCreateAssetMenuPath + "(GameObject) => Toggle Active State")]
 	public class ToggleGameObjectState : AtomAction<GameObject>
 	{
 		public override void Do(GameObject entry)

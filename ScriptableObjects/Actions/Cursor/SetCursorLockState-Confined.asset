@@ -9,14 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 97b258f7d4834730a7812a78aa078e9e, type: 3}
-  m_Name: Destroy
+  m_Script: {fileID: 11500000, guid: 6f3e075656514fea9e0be68183eab0b2, type: 3}
+  m_Name: SetCursorLockState-Confined
   m_EditorClassIdentifier: 
   _developerDescription: 
-  _delay:
-    _usage: 0
-    _value: 0
-    _constant: {fileID: 0}
-    _variable: {fileID: 0}
-    _variableInstancer: {fileID: 0}
-  _strategy: {fileID: 11400000, guid: 1b8203a69174e8c4f98ce4fe8d76321c, type: 2}
+  _lockMode: 2

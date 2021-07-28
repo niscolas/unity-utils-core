@@ -1,14 +1,15 @@
-﻿using UnityAtoms;
+﻿using niscolas.UnityUtils;
+using UnityAtoms;
 using UnityAtoms.BaseAtoms;
 using UnityEngine;
 
 namespace UnityAtomsUtils
 {
-    [CreateAssetMenu(menuName = Constants.ActionsCreateAssetMenuPath + "(int) => Set Target FPS")]
-    public class SetTargetFPS : AtomAction<int>
-    {
-        [SerializeField]
-        private IntReference _fixedTargetFps;
+	[CreateAssetMenu(menuName = AtomsConstants.ActionsCreateAssetMenuPath + "(int) => Set Target FPS")]
+	public class SetTargetFPS : AtomAction<int>
+	{
+		[SerializeField]
+		private IntReference _fixedTargetFps;
 
         public override void Do()
         {
