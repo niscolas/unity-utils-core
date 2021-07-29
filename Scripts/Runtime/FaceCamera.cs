@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityExtensions;
+using niscolas.UnityExtensions;
 using UnityUtils;
 
 namespace niscolas.UnityUtils
