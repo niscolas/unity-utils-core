@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace niscolas.UnityUtils
+namespace niscolas.UnityUtils.Core
 {
 	public static class ComparisonUtility
 	{

@@ -1,4 +1,4 @@
-﻿namespace niscolas.UnityUtils
+﻿namespace niscolas.UnityUtils.Core
 {
 	public enum ComparisonOperator
 	{

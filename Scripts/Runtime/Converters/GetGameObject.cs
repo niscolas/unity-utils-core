@@ -1,10 +1,9 @@
 ﻿using niscolas.UnityUtils;
 using UnityEngine;
-using UnityUtils;
 
-namespace Plugins.UnityUtils.Converters
+namespace niscolas.UnityUtils.Core
 {
-	public class GetGameObject : MonoConverter<Component, GameObject>
+	public class GetGameObject : BaseConverter<Component, GameObject>
 	{
 		[SerializeField]
 		private bool _getRoot;

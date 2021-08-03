@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace niscolas.UnityUtils
+namespace niscolas.UnityUtils.Core
 {
     [SelectionBase]
 	public class Root : MonoBehaviour

@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 
-namespace UnityUtils
+namespace niscolas.UnityUtils.Core
 {
-	public class CollisionToGameObjectConverter : MonoConverter<Collision, GameObject>
+	public class CollisionToGameObjectConverter : BaseConverter<Collision, GameObject>
 	{
 		public override GameObject Inner_Convert(Collision entry)
 		{

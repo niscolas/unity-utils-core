@@ -1,6 +1,6 @@
-﻿namespace UnityUtils
+﻿namespace niscolas.UnityUtils.Core
 {
-	public class IntToStringConverter : MonoConverter<int, string>
+	public class IntToStringConverter : BaseConverter<int, string>
 	{
 		public override string Inner_Convert(int entry)
 		{
