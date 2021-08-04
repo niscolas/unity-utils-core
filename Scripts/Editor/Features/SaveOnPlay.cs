@@ -11,10 +11,11 @@ namespace niscolas.UnityUtils.Core.Editor
 
         static SaveOnPlay()
         {
+            EditorApplication.playModeStateChanged -= AutoSaveWhenPlaymodeStarts;
             EditorApplication.playModeStateChanged += AutoSaveWhenPlaymodeStarts;
         }
 
-        private static void AutoSaveWhenPlaymodeStarts(PlayModeStateChange obj)
+        private static void AutoSaveWhenPlaymodeStarts(PlayModeStateChange playModeStateChange)
         {
             if (!IsEnabled || !EditorApplication.isPlayingOrWillChangePlaymode || EditorApplication.isPlaying)
             {

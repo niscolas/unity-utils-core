@@ -2,7 +2,7 @@
 
 namespace UnityUtils
 {
-	public interface ILifecycle
+	public interface IMonoLifeCycle
 	{
 		event Action OnAwake;
 		event Action OnEnabled;
