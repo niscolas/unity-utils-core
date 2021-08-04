@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
+using niscolas.UnityExtensions;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityExtensions;
 
 namespace UnityUtils
 {
