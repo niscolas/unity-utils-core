@@ -4,7 +4,7 @@ namespace niscolas.UnityUtils.Core.Editor
 {
     public class ToggleInspectorLockHotkey
     {
-        [MenuItem("Tools/[niscolas]/Toggle Lock &q")]
+        [MenuItem("Tools/[niscolas]/Toggle Lock " + MenuItemHotkey.Alt + "q")]
         static void Toggle()
         {
             ActiveEditorTracker.sharedTracker.isLocked = !ActiveEditorTracker.sharedTracker.isLocked;
