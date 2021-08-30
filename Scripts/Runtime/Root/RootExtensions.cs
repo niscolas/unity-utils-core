@@ -50,10 +50,18 @@ namespace niscolas.UnityUtils.Core
 
         public static T GetComponentFromRoot<T>(this GameObject gameObject)
         {
-            return gameObject.Root().GetComponentInChildren<T>();
+            GameObject root = gameObject.Root();
+            if (!root)
+            {
+                Debug.LogWarning($"[{gameObject.name}] has no root, aborting GetComponent operation.");
+                return default;
+            }
+
+            return root.GetComponentInChildren<T>();
         }
 
-        public static T IfNullGetComponentFromRoot<T>(this GameObject gameObject, T component) where T : class
+        public static T IfNullGetComponentFromRoot<T>(
+                this GameObject gameObject, T component) where T : class
         {
             if (!component.IsUnityNull())
             {
