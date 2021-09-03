@@ -6,7 +6,7 @@ namespace niscolas.UnityUtils.Core.Editor
     public class SetRectTransformAnchorsToCornersHotkey
     {
         [MenuItem("Context/RectTransform/Set Anchors to Corners " +
-                  MenuItemHotkey.AltShift + "a")]
+                  MenuItemHotkey.AltCtrlShift + "a")]
         private static void SetEasyAnchors()
         {
             GameObject[] gameObjects = Selection.gameObjects;
