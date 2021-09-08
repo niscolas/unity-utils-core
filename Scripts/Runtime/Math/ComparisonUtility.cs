@@ -2,20 +2,33 @@
 
 namespace niscolas.UnityUtils.Core
 {
-	public static class ComparisonUtility
-	{
-		public static bool Compare<T>(T x, ComparisonOperator comparisonOperator, T y) where T : IComparable
-		{
-			return comparisonOperator switch
-			{
-				ComparisonOperator.EqualTo => x.CompareTo(y) == 0,
-				ComparisonOperator.NotEqual => x.CompareTo(y) != 0,
-				ComparisonOperator.GreaterThan => x.CompareTo(y) > 0,
-				ComparisonOperator.GreaterThanOrEqualTo => x.CompareTo(y) >= 0,
-				ComparisonOperator.LessThan => x.CompareTo(y) < 0,
-				ComparisonOperator.LessThanOrEqualTo => x.CompareTo(y) <= 0,
-				_ => throw new ArgumentOutOfRangeException()
-			};
-		}
-	}
+    public static class ComparisonUtility
+    {
+        public static bool Compare<T>(T x, ComparisonOperator comparisonOperator, T y) where T : IComparable
+        {
+            switch (comparisonOperator)
+            {
+                case ComparisonOperator.EqualTo:
+                    return x.CompareTo(y) == 0;
+
+                case ComparisonOperator.NotEqual:
+                    return x.CompareTo(y) != 0;
+
+                case ComparisonOperator.GreaterThan:
+                    return x.CompareTo(y) > 0;
+
+                case ComparisonOperator.GreaterThanOrEqualTo:
+                    return x.CompareTo(y) >= 0;
+
+                case ComparisonOperator.LessThan:
+                    return x.CompareTo(y) < 0;
+
+                case ComparisonOperator.LessThanOrEqualTo:
+                    return x.CompareTo(y) <= 0;
+
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+        }
+    }
 }
