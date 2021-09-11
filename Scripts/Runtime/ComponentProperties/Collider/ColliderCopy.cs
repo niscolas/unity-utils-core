@@ -1,12 +1,12 @@
 ﻿using UnityEngine;
 
-namespace UnityUtils
+namespace niscolas.UnityUtils.Core
 {
-	public class ColliderWrapper : ComponentWrapper<Collider, ColliderProperties, ColliderHandledProperties>
+	public class ColliderCopy : ComponentCopy<Collider, ColliderProperties, ColliderHandledProperties>
 	{
-		public ColliderWrapper() { }
+		public ColliderCopy() { }
 
-		public ColliderWrapper(Collider collider, ColliderHandledProperties handledProperties) :
+		public ColliderCopy(Collider collider, ColliderHandledProperties handledProperties) :
 			base(collider, handledProperties) { }
 
 		protected override ColliderProperties ExtractPropertiesFrom(Collider component)

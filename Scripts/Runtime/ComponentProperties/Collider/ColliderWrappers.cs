@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 
-namespace UnityUtils
+namespace niscolas.UnityUtils.Core
 {
-	public class ColliderWrappers :
-		ComponentWrappers<ColliderWrapper, Collider, ColliderProperties, ColliderHandledProperties> { }
+	public class ColliderWrappers : ComponentWrappers<ColliderCopy, Collider, ColliderProperties, ColliderHandledProperties> { }
 }

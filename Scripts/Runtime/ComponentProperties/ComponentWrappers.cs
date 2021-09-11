@@ -3,10 +3,10 @@ using System.Linq;
 using niscolas.UnityExtensions;
 using UnityEngine;
 
-namespace UnityUtils
+namespace niscolas.UnityUtils.Core
 {
 	public class ComponentWrappers<TWrapper, TComponent, TProperties, THandledProperties>
-		where TWrapper : ComponentWrapper<TComponent, TProperties, THandledProperties>, new()
+		where TWrapper : ComponentCopy<TComponent, TProperties, THandledProperties>, new()
 		where TComponent : Component
 		where TProperties : IComponentProperties<TComponent, THandledProperties>
 		where THandledProperties : HandledProperties

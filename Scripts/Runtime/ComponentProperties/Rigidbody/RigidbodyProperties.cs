@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace UnityUtils
+namespace niscolas.UnityUtils.Core
 {
 	public class RigidbodyHandledProperties : HandledProperties
 	{
@@ -35,6 +35,7 @@ namespace UnityUtils
 				CopyInterpolation = true,
 				CopyCollisionDetectionMode = true,
 			};
+			
 			Apply(component, handledProperties);
 		}
 

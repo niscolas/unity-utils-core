@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
-namespace UnityUtils
+namespace niscolas.UnityUtils.Core
 {
-	public class RigidbodyWrappers : ComponentWrappers<RigidbodyWrapper, Rigidbody, RigidbodyProperties,
+	public class RigidbodyWrappers : ComponentWrappers<RigidbodyCopy, Rigidbody, RigidbodyProperties,
 		RigidbodyHandledProperties> { }
 }

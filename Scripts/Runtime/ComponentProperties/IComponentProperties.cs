@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace UnityUtils
+namespace niscolas.UnityUtils.Core
 {
 	public interface IComponentProperties<in TComponent, in THandleProperties>
 		where TComponent : Component

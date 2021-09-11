@@ -1,14 +1,15 @@
 ﻿using UnityEngine;
+using UnityUtils;
 
-namespace UnityUtils
+namespace niscolas.UnityUtils.Core
 {
-	public class RigidbodyWrapper : ComponentWrapper<Rigidbody, RigidbodyProperties, RigidbodyHandledProperties>
+	public class RigidbodyCopy : ComponentCopy<Rigidbody, RigidbodyProperties, RigidbodyHandledProperties>
 	{
-		public RigidbodyWrapper() { }
+		public RigidbodyCopy() { }
 
-		public RigidbodyWrapper(Rigidbody component) : base(component) { }
+		public RigidbodyCopy(Rigidbody component) : base(component) { }
 
-		public RigidbodyWrapper(Rigidbody rigidbody, RigidbodyHandledProperties handledProperties) : base(rigidbody,
+		public RigidbodyCopy(Rigidbody rigidbody, RigidbodyHandledProperties handledProperties) : base(rigidbody,
 			handledProperties) { }
 
 		protected override RigidbodyProperties ExtractPropertiesFrom(Rigidbody component)
