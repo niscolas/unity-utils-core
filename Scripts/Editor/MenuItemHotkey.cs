@@ -7,9 +7,9 @@ namespace niscolas.UnityUtils.Core.Editor
         public const string Shift = "#";
         public const string Empty = "_";
 
-        public const string AltShift = Alt + Shift;
-        public const string AltCtrl = Alt + Ctrl;
-        public const string AltCtrlShift = Alt + Ctrl + Shift;
-        public const string CtrlShift = Ctrl + Shift;
+        public const string AltShift = " " + Alt + Shift;
+        public const string AltCtrl = " " + Alt + Ctrl;
+        public const string AltCtrlShift = " " + Alt + Ctrl + Shift;
+        public const string CtrlShift = " " + Ctrl + Shift;
     }
 }

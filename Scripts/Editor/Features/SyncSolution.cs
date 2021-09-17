@@ -7,7 +7,7 @@ namespace niscolas.UnityUtils.Core.Editor
 {
     public static class SyncSolution
     {
-        [MenuItem("Assets/Sync Solution " + MenuItemHotkey.AltShift + "s")]
+        [MenuItem(Constants.AssetMenuItemPrefix + "Sync Solution" + MenuItemHotkey.AltShift + "s")]
         public static void Sync()
         {
             var editor = Type.GetType("UnityEditor.SyncVS, UnityEditor");
