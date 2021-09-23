@@ -20,38 +20,29 @@ namespace niscolas.UnityUtils.Core
         private static readonly Dictionary<GameObject, MonoLifeCycle> _lifeCycles =
             new Dictionary<GameObject, MonoLifeCycle>();
 
-        public static bool New(GameObject lifeCycleGameObject, out MonoLifeCycle lifecycle)
+        public static void New(GameObject lifeCycleGameObject, out MonoLifeCycle lifecycle)
         {
             if (!_lifeCycles.TryGetValue(lifeCycleGameObject, out lifecycle))
             {
                 lifecycle = lifeCycleGameObject.GetOrAddComponent<MonoLifeCycle>();
             }
-
-            return true;
         }
 
-        public static void TriggerOnMoment
-        (
-            GameObject subject, Action action, LifecycleMoment triggerMoment, LifecycleMoment unregisterMoment
-        )
+        public static void TriggerOnMoment(
+            GameObject subject,
+            Action action,
+            LifecycleMoment triggerMoment,
+            LifecycleMoment unregisterMoment)
         {
-            if (!New(subject, out MonoLifeCycle lifecycle))
-            {
-                return;
-            }
+            New(subject, out MonoLifeCycle lifecycle);
 
             lifecycle.AddAction(action, triggerMoment, unregisterMoment);
         }
 
-        public static void TriggerOnMoment
-        (
-            GameObject subject, Action action, LifecycleMoment triggerMoment
-        )
+        public static void TriggerOnMoment(
+            GameObject subject, Action action, LifecycleMoment triggerMoment)
         {
-            if (!New(subject, out MonoLifeCycle lifecycle))
-            {
-                return;
-            }
+            New(subject, out MonoLifeCycle lifecycle);
 
             lifecycle.AddAction(action, triggerMoment);
         }
