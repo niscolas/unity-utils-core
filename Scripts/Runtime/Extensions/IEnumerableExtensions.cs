@@ -6,15 +6,16 @@ namespace niscolas.UnityExtensions
 {
     public static class EnumerableExtensions
     {
-        public static T RandomElement<T>(this IEnumerable<T> enumerable)
+        public static T RandomElement<T>(this IEnumerable<T> source)
         {
-            return enumerable.RandomElementUsing(new Random());
+            return source.RandomElement(new Random());
         }
 
-        public static T RandomElementUsing<T>(this IEnumerable<T> enumerable, Random rand)
+        // TODO avoid multiple enumeration
+        public static T RandomElement<T>(this IEnumerable<T> source, Random random)
         {
-            int index = rand.Next(0, enumerable.Count());
-            return enumerable.ElementAt(index);
+            int index = random.Next(0, source.Count());
+            return source.ElementAt(index);
         }
 
         public static bool IsNullOrEmpty<T>(this IEnumerable<T> enumerable)

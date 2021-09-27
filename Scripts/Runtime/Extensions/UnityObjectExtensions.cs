@@ -12,10 +12,10 @@ namespace niscolas.UnityExtensions
         {
             string assetPath = asset.Path();
             int startIndex = assetPath.LastIndexOf(UnityDirSeparator) + 1;
-            
+
             return assetPath.Substring(startIndex);
         }
-        
+
         public static string Path(this Object asset)
         {
             return AssetDatabase.GetAssetPath(asset);
@@ -42,6 +42,7 @@ namespace niscolas.UnityExtensions
             }
 
             AssetDatabase.CreateAsset(asset, fullPath);
+
             if (saveAssets)
             {
                 AssetDatabase.SaveAssets();
