@@ -4,6 +4,7 @@
 	{
 		public const string NiscolasTag = "[niscolas]";
 		public const string AssetMenuItemPrefix =  "Assets/" + NiscolasTag + "/";
+		public const string ToolsMenuItemPrefix =  "Tools/" + NiscolasTag + "/";
 		public const string CreateAssetMenuPathPrefix = NiscolasTag + "/Unity Utils/";
 	}
 }

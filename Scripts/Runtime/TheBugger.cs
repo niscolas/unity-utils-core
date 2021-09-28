@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace niscolas.UnityUtils.Core
 {
@@ -9,41 +10,44 @@ namespace niscolas.UnityUtils.Core
         private static readonly Color ErrorColor = Color.red;
         private static readonly Color WarningColor = Color.yellow;
 
-        public static void LogWithColor(string text, Color color, LogType logType)
+        public static void LogWithColor(
+            string text, Color color, LogType logType, Object context = null)
         {
-            Log($"<color=#{ColorUtility.ToHtmlStringRGB(color)}>{text}</color>",
-                logType);
+            Log(
+                $"<color=#{ColorUtility.ToHtmlStringRGB(color)}>{text}</color>",
+                logType,
+                context);
         }
 
-        public static void LogSuccess(string text)
+        public static void LogSuccess(string text, Object context = null)
         {
-            LogWithColor(text, SuccessColor, LogType.Log);
+            LogWithColor(text, SuccessColor, LogType.Log, context);
         }
 
-        public static void LogRealWarning(string text)
+        public static void LogRealWarning(string text, Object context = null)
         {
-            LogWithColor(text, WarningColor, LogType.Warning);
+            LogWithColor(text, WarningColor, LogType.Warning, context);
         }
         
-        public static void LogRealError(string text)
+        public static void LogRealError(string text, Object context = null)
         {
-            LogWithColor(text, ErrorColor, LogType.Error);
+            LogWithColor(text, ErrorColor, LogType.Error, context);
         }
         
-        public static void Log(string text, LogType type)
+        public static void Log(string text, LogType type, Object context = null)
         {
             switch (type)
             {
                 case LogType.Warning:
-                    Debug.LogWarning(text);
+                    Debug.LogWarning(text, context);
                     break;
 
                 case LogType.Error:
-                    Debug.LogError(text);
+                    Debug.LogError(text, context);
                     break;
 
                 default:
-                    Debug.Log(text);
+                    Debug.Log(text, context);
                     break;
             }
         }

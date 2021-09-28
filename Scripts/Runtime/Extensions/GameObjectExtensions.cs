@@ -34,7 +34,7 @@ namespace niscolas.UnityExtensions
             return parent == null ? default : parent.GetComponentInChildren<T>();
         }
 
-        public static TTest IfNullAddComponent<TTest, TAdd>(this GameObject gameObject)
+        public static TTest IfUnityNullAddComponent<TTest, TAdd>(this GameObject gameObject)
             where TAdd : Component, TTest
         {
             if (!gameObject.TryGetComponent(out TTest component))
@@ -45,7 +45,7 @@ namespace niscolas.UnityExtensions
             return component;
         }
 
-        public static T IfNullAddComponent<T>(this GameObject gameObject, T component) where T : Component
+        public static T IfUnityNullAddComponent<T>(this GameObject gameObject, T component) where T : Component
         {
             if (!component)
             {
@@ -55,22 +55,45 @@ namespace niscolas.UnityExtensions
             return component;
         }
 
-        public static T IfNullGetComponent<T>(this GameObject gameObject, T test, bool searchChildren = false)
+        public static T IfUnityNullGetComponent<T>(this GameObject gameObject, T test, bool searchChildren = false)
         {
-            if (test.IsUnityNull())
+            if (!test.IsUnityNull())
             {
-                if (searchChildren)
-                {
-                    return gameObject.GetComponentInChildren<T>();
-                }
-
-                return gameObject.GetComponent<T>();
+                return test;
             }
 
-            return test;
+            if (searchChildren)
+            {
+                return gameObject.GetComponentInChildren<T>();
+            }
+
+            return gameObject.GetComponent<T>();
         }
 
-        public static T IfUnityNullGetOrAddComponent<T>(this GameObject gameObject, T component) where T : Component
+        public static T[] IfUnityNullOrEmptyGetComponents<T>(
+            this GameObject gameObject,
+            T[] components,
+            bool getComponentInChildren = false)
+        {
+            if (!components.IsNullOrEmpty())
+            {
+                return components;
+            }
+
+            if (getComponentInChildren)
+            {
+                components = gameObject.GetComponentsInChildren<T>();
+            }
+            else
+            {
+                components = gameObject.GetComponents<T>();
+            }
+
+            return components;
+        }
+
+        public static T IfUnityNullGetOrAddComponent<T>(
+            this GameObject gameObject, T component) where T : Component
         {
             if (component.IsUnityNull())
             {
@@ -80,7 +103,7 @@ namespace niscolas.UnityExtensions
             return component;
         }
 
-        public static TTest IfNullGetOrAddComponent<TTest, TAdd>(
+        public static TTest IfUnityNullGetOrAddComponent<TTest, TAdd>(
             this GameObject gameObject, TTest test, bool searchChildren = true
         )
             where TAdd : Component, TTest
@@ -167,41 +190,37 @@ namespace niscolas.UnityExtensions
             }
         }
 
-        public static void ReplaceWith
-        (
-            this GameObject oldInstance,
-            GameObject newInstance,
+        public static void Replace(
+            this Transform replacement,
+            Transform target,
             bool copyPosition,
             bool copyRotation,
             bool copyScale,
-            bool copyParent
-        )
+            bool copyParent)
         {
-            Transform oldTransform = oldInstance.transform;
-            Vector3 position = oldTransform.position;
-            Quaternion rotation = oldTransform.rotation;
-            Vector3 scale = oldTransform.localScale;
-            Transform parent = oldTransform.parent;
+            Vector3 position = target.position;
+            Quaternion rotation = target.rotation;
+            Vector3 scale = target.localScale;
+            Transform parent = target.parent;
 
-            Transform newInstanceTransform = newInstance.transform;
             if (copyPosition)
             {
-                newInstanceTransform.position = position;
+                replacement.position = position;
             }
 
             if (copyRotation)
             {
-                newInstanceTransform.rotation = rotation;
+                replacement.rotation = rotation;
             }
 
             if (copyScale)
             {
-                newInstanceTransform.localScale = scale;
+                replacement.localScale = scale;
             }
 
             if (copyParent)
             {
-                newInstanceTransform.parent = parent;
+                replacement.parent = parent;
             }
         }
     }

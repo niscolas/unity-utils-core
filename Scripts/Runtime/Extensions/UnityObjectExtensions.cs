@@ -64,11 +64,6 @@ namespace niscolas.UnityExtensions
             AssetDatabase.RenameAsset(objPath, newName);
             AssetDatabase.SaveAssets();
         }
-
-        public static bool IsPartOfPrefab(this Object unityObj)
-        {
-            return PrefabUtility.IsPartOfPrefabAsset(unityObj);
-        }
 #endif
 
         public static bool IsUnityNull(this object obj)
