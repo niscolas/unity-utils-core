@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using niscolas.UnityUtils.Core;
 using UnityEngine;
 
 namespace niscolas.UnityExtensions
@@ -17,14 +18,13 @@ namespace niscolas.UnityExtensions
             return gameObject.AddComponent<T>().GetCopyOf(toAdd);
         }
 
-        public static T GetOrAddComponent<T>(this GameObject gameObject) where T : Component
+        public static void GetOrAddComponent<T>(
+            this GameObject gameObject, out T component) where T : Component
         {
-            if (!gameObject.TryGetComponent(out T component))
+            if (!gameObject.TryGetComponent(out component))
             {
                 component = gameObject.AddComponent<T>();
             }
-
-            return component;
         }
 
         public static T GetComponentInSiblings<T>(this GameObject gameObject)
@@ -34,53 +34,36 @@ namespace niscolas.UnityExtensions
             return parent == null ? default : parent.GetComponentInChildren<T>();
         }
 
-        public static TTest IfUnityNullAddComponent<TTest, TAdd>(this GameObject gameObject)
+        public static void IfUnityNullAddComponent<TTest, TAdd>(
+            this GameObject gameObject, ref TTest component)
             where TAdd : Component, TTest
         {
-            if (!gameObject.TryGetComponent(out TTest component))
+            if (component.IsUnityNull())
             {
                 component = gameObject.AddComponent<TAdd>();
             }
-
-            return component;
         }
 
-        public static T IfUnityNullAddComponent<T>(this GameObject gameObject, T component) where T : Component
+        public static void IfUnityNullAddComponent<T>(
+            this GameObject gameObject, ref T component) where T : Component
         {
             if (!component)
             {
-                return gameObject.AddComponent<T>();
+                component = gameObject.AddComponent<T>();
             }
-
-            return component;
         }
 
-        public static T IfUnityNullGetComponent<T>(this GameObject gameObject, T test, bool searchChildren = false)
-        {
-            if (!test.IsUnityNull())
-            {
-                return test;
-            }
-
-            if (searchChildren)
-            {
-                return gameObject.GetComponentInChildren<T>();
-            }
-
-            return gameObject.GetComponent<T>();
-        }
-
-        public static T[] IfUnityNullOrEmptyGetComponents<T>(
+        public static void IfUnityNullOrEmptyGetComponents<T>(
             this GameObject gameObject,
-            T[] components,
-            bool getComponentInChildren = false)
+            ref T[] components,
+            bool getComponentsIsChildren = false)
         {
             if (!components.IsNullOrEmpty())
             {
-                return components;
+                return;
             }
 
-            if (getComponentInChildren)
+            if (getComponentsIsChildren)
             {
                 components = gameObject.GetComponentsInChildren<T>();
             }
@@ -88,56 +71,61 @@ namespace niscolas.UnityExtensions
             {
                 components = gameObject.GetComponents<T>();
             }
-
-            return components;
         }
 
-        public static T IfUnityNullGetOrAddComponent<T>(
-            this GameObject gameObject, T component) where T : Component
+        public static void IfUnityNullGetOrAddComponent<T>(
+            this GameObject gameObject, ref T component) where T : Component
         {
             if (component.IsUnityNull())
             {
-                component = gameObject.GetOrAddComponent<T>();
+                gameObject.GetOrAddComponent(out component);
             }
-
-            return component;
         }
 
-        public static TTest IfUnityNullGetOrAddComponent<TTest, TAdd>(
-            this GameObject gameObject, TTest test, bool searchChildren = true
-        )
+        public static void IfUnityNullGetOrAddComponent<TTest, TAdd>(
+            this GameObject gameObject, 
+            ref TTest test, 
+            bool getComponentInChildren = false)
             where TAdd : Component, TTest
         {
             if (!test.IsUnityNull())
             {
-                return test;
+                return;
             }
 
-            if (searchChildren)
+            if (getComponentInChildren)
             {
                 test = gameObject.GetComponentInChildren<TTest>();
             }
             else
             {
-                test = gameObject.GetComponent<TTest>();
+                gameObject.TryGetComponent(out test);
             }
 
-            if (test == null)
+            if (test.IsUnityNull())
             {
                 test = gameObject.AddComponent<TAdd>();
             }
-
-            return test;
         }
 
-        public static T IfUnityNullTryGetComponent<T>(this GameObject gameObject, T component)
+        public static void IfUnityNullGetComponent<T>(
+            this GameObject gameObject,
+            ref T component,
+            bool getComponentInChildren = false)
         {
-            if (component.IsUnityNull())
+            if (!component.IsUnityNull())
+            {
+                return;
+            }
+
+            if (getComponentInChildren)
+            {
+                component = gameObject.GetComponentFromRoot<T>();
+            }
+            else
             {
                 gameObject.TryGetComponent(out component);
             }
-
-            return component;
         }
 
         public static List<GameObject> FindChildrenWithTag(this Transform parent, string tag)

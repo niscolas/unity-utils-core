@@ -24,8 +24,7 @@ namespace niscolas.UnityUtils
                 _cameraTransform = _camera.transform;
             }
 
-            _lifecycle = gameObject.IfUnityNullGetOrAddComponent(_lifecycle);
-            _lifecycle.AddAction(Do, _faceEvent);
+            MonoLifeCycle.TriggerOnMoment(gameObject, Do, _faceEvent);
         }
 
         private void Do()

@@ -53,7 +53,7 @@ namespace niscolas.UnityUtils.Core
             GameObject root = gameObject.Root();
             if (!root)
             {
-                Debug.LogWarning(
+                TheBugger.LogRealWarning(
                         $"[{gameObject.name}] has no root, aborting GetComponent operation.", 
                         gameObject);
                 return default;

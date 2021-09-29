@@ -17,14 +17,17 @@ namespace niscolas.UnityUtils.Core
         public event Action OnDisabled;
         public event Action OnDestroyed;
 
-        private static readonly Dictionary<GameObject, MonoLifeCycle> _lifeCycles =
+        private static readonly Dictionary<GameObject, MonoLifeCycle> LifeCycles =
             new Dictionary<GameObject, MonoLifeCycle>();
 
-        public static void New(GameObject lifeCycleGameObject, out MonoLifeCycle lifecycle)
+        private bool _hasAwaken;
+
+        public static void GetOrCreate(
+            GameObject lifeCycleGameObject, out MonoLifeCycle lifecycle)
         {
-            if (!_lifeCycles.TryGetValue(lifeCycleGameObject, out lifecycle))
+            if (!LifeCycles.TryGetValue(lifeCycleGameObject, out lifecycle))
             {
-                lifecycle = lifeCycleGameObject.GetOrAddComponent<MonoLifeCycle>();
+                lifeCycleGameObject.GetOrAddComponent(out lifecycle);
             }
         }
 
@@ -34,7 +37,7 @@ namespace niscolas.UnityUtils.Core
             LifecycleMoment triggerMoment,
             LifecycleMoment unregisterMoment)
         {
-            New(subject, out MonoLifeCycle lifecycle);
+            GetOrCreate(subject, out MonoLifeCycle lifecycle);
 
             lifecycle.AddAction(action, triggerMoment, unregisterMoment);
         }
@@ -42,12 +45,13 @@ namespace niscolas.UnityUtils.Core
         public static void TriggerOnMoment(
             GameObject subject, Action action, LifecycleMoment triggerMoment)
         {
-            New(subject, out MonoLifeCycle lifecycle);
+            GetOrCreate(subject, out MonoLifeCycle lifecycle);
 
             lifecycle.AddAction(action, triggerMoment);
         }
 
-        public void AddAction(Action action, LifecycleMoment triggerMoment, LifecycleMoment unregisterMoment)
+        public void AddAction(
+            Action action, LifecycleMoment triggerMoment, LifecycleMoment unregisterMoment)
         {
             AddAction(action, triggerMoment);
             RemoveAction(action, unregisterMoment);
@@ -58,7 +62,15 @@ namespace niscolas.UnityUtils.Core
             switch (triggerMoment)
             {
                 case LifecycleMoment.Awake:
-                    OnAwake += action;
+                    if (_hasAwaken)
+                    {
+                        action?.Invoke();
+                    }
+                    else
+                    {
+                        OnAwake += action;
+                    }
+
                     break;
 
                 case LifecycleMoment.OnEnable:
@@ -131,8 +143,9 @@ namespace niscolas.UnityUtils.Core
 
         private void Awake()
         {
-            _lifeCycles.Add(gameObject, this);
+            LifeCycles.Add(gameObject, this);
             OnAwake?.Invoke();
+            _hasAwaken = true;
         }
 
         private void OnEnable()
@@ -167,7 +180,7 @@ namespace niscolas.UnityUtils.Core
 
         private void OnDestroy()
         {
-            _lifeCycles.Remove(gameObject);
+            LifeCycles.Remove(gameObject);
             OnDestroyed?.Invoke();
         }
     }
