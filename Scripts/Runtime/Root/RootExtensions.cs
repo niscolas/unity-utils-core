@@ -48,6 +48,15 @@ namespace niscolas.UnityUtils.Core
             return GetComponentFromRoot<T>(component.gameObject);
         }
 
+        public static void IfUnityNullGetComponentFromRoot<T>(
+            this GameObject gameObject, ref T component)
+        {
+            if (component.IsUnityNull())
+            {
+                component = gameObject.GetComponentFromRoot<T>();
+            }
+        }
+
         public static T GetComponentFromRoot<T>(this GameObject gameObject)
         {
             GameObject root = gameObject.Root();
