@@ -1,6 +1,4 @@
-﻿using System;
-using UnityEngine;
-using Object = UnityEngine.Object;
+﻿using UnityEngine;
 
 namespace niscolas.UnityUtils.Core
 {
@@ -28,12 +26,17 @@ namespace niscolas.UnityUtils.Core
         {
             LogWithColor(text, WarningColor, LogType.Warning, context);
         }
-        
+
         public static void LogRealError(string text, Object context = null)
         {
             LogWithColor(text, ErrorColor, LogType.Error, context);
         }
-        
+
+        public static void Log(string text, Object context = null)
+        {
+            Log(text, LogType.Log, context);
+        }
+
         public static void Log(string text, LogType type, Object context = null)
         {
             switch (type)

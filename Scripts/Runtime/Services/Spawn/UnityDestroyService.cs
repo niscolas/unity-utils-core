@@ -17,17 +17,17 @@ namespace UnityUtils
 			Object.Destroy(component, delay);
 		}
 
-		public void Despawn(GameObject gameObject, float delay = 0, bool immediate = false)
+		public void Despawn(GameObject instance, float delay = 0, bool immediate = false)
 		{
 #if UNITY_EDITOR
 			if (!Application.isPlaying || immediate)
 			{
-				Object.DestroyImmediate(gameObject);
+				Object.DestroyImmediate(instance);
 				return;
 			}
 #endif
 
-			Object.Destroy(gameObject, delay);
+			Object.Destroy(instance, delay);
 		}
 	}
 }
