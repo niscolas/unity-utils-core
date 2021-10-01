@@ -10,11 +10,12 @@ using UnityEngine.SceneManagement;
 
 namespace niscolas.UnityUtils.Core.Editor
 {
-    public static class Preparer
+    public static class MasterPreparer
     {
         public static bool IsEnabled { get; set; } = true;
 
         public static Action BeforePrepared;
+        public static Action Preparing;
         public static Action AfterPrepared;
 
         [InitializeOnLoadMethod]
@@ -36,6 +37,7 @@ namespace niscolas.UnityUtils.Core.Editor
         public static void RunPrepare()
         {
             BeforePrepared?.Invoke();
+            Preparing?.Invoke();
 
             IEnumerable<ComponentOfInterface<IPrepare>> prepareComponents = TheGameObjectUtility
                 .FindObjectsOfInterfaceAsComponents<IPrepare>();
