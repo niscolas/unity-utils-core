@@ -23,20 +23,25 @@ namespace niscolas.UnityExtensions
 
         public static string FolderPath(this Object asset)
         {
-            string folderPath = asset.Path().SubstringUntilLastCharacter(UnityDirSeparator);
+            string folderPath = FolderPath(asset.Path());
 
             return folderPath;
         }
 
+        public static string FolderPath(string fullPath)
+        {
+            return fullPath.SubstringUntilLastCharacter(UnityDirSeparator);
+        }
+
         public static void Create(this Object asset, string fullPath, bool saveAssets = true)
         {
-            string fullFolderPath = fullPath.SubstringUntilLastCharacter(UnityDirSeparator);
+            string folderPath = FolderPath(fullPath);
 
-            if (!AssetDatabase.IsValidFolder(fullFolderPath))
+            if (!AssetDatabase.IsValidFolder(folderPath))
             {
-                string parentFolderPath = fullFolderPath.SubstringUntilLastCharacter(UnityDirSeparator);
-                int lastDirSeparatorCharIndex = fullFolderPath.LastIndexOf(UnityDirSeparator);
-                string newFolderName = fullFolderPath.Substring(lastDirSeparatorCharIndex + 1);
+                string parentFolderPath = FolderPath(folderPath);
+                int lastDirSeparatorCharIndex = folderPath.LastIndexOf(UnityDirSeparator);
+                string newFolderName = folderPath.Substring(lastDirSeparatorCharIndex + 1);
 
                 AssetDatabase.CreateFolder(parentFolderPath, newFolderName);
             }
@@ -63,6 +68,20 @@ namespace niscolas.UnityExtensions
 
             AssetDatabase.RenameAsset(objPath, newName);
             AssetDatabase.SaveAssets();
+        }
+
+        public static void Create(
+            this Object obj,
+            string folderPath,
+            string name,
+            bool saveAssets = true)
+        {
+            AssetDatabase.CreateAsset(obj, $"{folderPath}/{name}.asset");
+
+            if (saveAssets)
+            {
+                AssetDatabase.SaveAssets();
+            }
         }
 #endif
 
