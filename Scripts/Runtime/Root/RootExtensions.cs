@@ -57,14 +57,26 @@ namespace niscolas.UnityUtils.Core
             }
         }
 
+        public static bool TryGetComponentFromRoot<T>(
+            this Component component, out T resultComponent) where T : class
+        {
+            return component.gameObject.TryGetComponentFromRoot(out resultComponent);
+        }
+
+        public static bool TryGetComponentFromRoot<T>(
+            this GameObject gameObject, out T component) where T : class
+        {
+            component = gameObject.GetComponentFromRoot<T>();
+            return !component.IsUnityNull();
+        }
+
         public static T GetComponentFromRoot<T>(this GameObject gameObject)
         {
-            GameObject root = gameObject.Root();
-            if (!root)
+            if (!gameObject.TryFindRoot(out GameObject root))
             {
                 TheBugger.LogRealWarning(
-                        $"[{gameObject.name}] has no root, aborting GetComponent operation.", 
-                        gameObject);
+                    $"[{gameObject.name}] has no root, aborting GetComponent operation.",
+                    gameObject);
                 return default;
             }
 
@@ -72,7 +84,7 @@ namespace niscolas.UnityUtils.Core
         }
 
         public static T IfNullGetComponentFromRoot<T>(
-                this GameObject gameObject, T component) where T : class
+            this GameObject gameObject, T component) where T : class
         {
             if (!component.IsUnityNull())
             {
