@@ -7,12 +7,10 @@ namespace niscolas.UnityUtils.Core
         protected GameObject _gameObject;
         protected Transform _transform;
 
-        private void Awake()
+        protected virtual void Awake()
         {
             _gameObject = gameObject;
             _transform = transform;
         }
-
-        protected virtual void Inner_Awake() { }
     }
 }
