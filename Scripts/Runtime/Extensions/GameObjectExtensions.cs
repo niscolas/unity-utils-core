@@ -83,8 +83,8 @@ namespace niscolas.UnityExtensions
         }
 
         public static void IfUnityNullGetOrAddComponent<TTest, TAdd>(
-            this GameObject gameObject, 
-            ref TTest test, 
+            this GameObject gameObject,
+            ref TTest test,
             bool getComponentInChildren = false)
             where TAdd : Component, TTest
         {
@@ -120,7 +120,7 @@ namespace niscolas.UnityExtensions
 
             if (getComponentInChildren)
             {
-                component = gameObject.GetComponentFromRoot<T>();
+                component = gameObject.GetComponentInChildren<T>();
             }
             else
             {
