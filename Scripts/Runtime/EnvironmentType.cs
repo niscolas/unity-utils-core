@@ -6,7 +6,8 @@ namespace niscolas.UnityUtils.Core
     {
         EditMode,
         PlayMode,
-        Player
+        Build,
+        DebugBuild
     }
 
     public static class EnvironmentTypeExtensions
@@ -24,9 +25,14 @@ namespace niscolas.UnityUtils.Core
                     return EnvironmentType.EditMode;
                 }
             }
+            
+            if (Debug.isDebugBuild)
+            {
+                return EnvironmentType.DebugBuild;
+            }
             else
             {
-                return EnvironmentType.Player;
+                return EnvironmentType.Build;
             }
         }
 
