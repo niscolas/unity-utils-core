@@ -157,5 +157,18 @@ namespace niscolas.UnityExtensions
             
             return source;
         }
+        
+        public static Vector3 NearestPositionOnLine(
+            this Vector3 testPosition, Vector3 lineStart, Vector3 lineEnd)
+        {
+            Vector3 line = lineEnd - lineStart;
+            float lineMagnitude = line.magnitude;
+            line.Normalize();
+
+            Vector3 v = testPosition - lineStart;
+            float d = Vector3.Dot(v, line);
+            d = Mathf.Clamp(d, 0f, lineMagnitude);
+            return lineStart + line * d;
+        }
     }
 }
