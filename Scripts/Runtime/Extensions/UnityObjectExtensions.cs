@@ -112,5 +112,10 @@ namespace niscolas.UnityExtensions
                     return false;
             }
         }
+
+        public static Texture2D GetThumbnail(this Object obj)
+        {
+            return AssetPreview.GetMiniThumbnail(obj);
+        }
     }
 }

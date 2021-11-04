@@ -55,6 +55,7 @@ namespace niscolas.UnityExtensions
             {
                 max = readOnlyList.Count;
             }
+
             return UnityEngine.Random.Range(min, max);
         }
 
@@ -81,6 +82,10 @@ namespace niscolas.UnityExtensions
         {
             return enumerableA.Intersect(enumerableB).Any();
         }
+
+        public static bool ElementsAreEqual<T>(this IEnumerable<T> enumerableA, IEnumerable<T> enumerableB)
+        {
+            return !enumerableA.Except(enumerableB).Any();
+        }
     }
 }
-
