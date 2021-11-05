@@ -1,16 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using UnityEngine;
 using niscolas.UnityExtensions;
+using UnityEngine;
 using UnityUtils;
 
 namespace niscolas.UnityUtils.Core
 {
-    public class MonoHookManager : CachedMonoBehaviour
+    public class MonoLifecycleHooksManager : CachedMonoBehaviour
     {
-        private static readonly Dictionary<GameObject, MonoHookManager> Managers =
-            new Dictionary<GameObject, MonoHookManager>();
-
         private static readonly Dictionary<MonoCallbackType, Type> CallbackAndHookTypeRelation =
             new Dictionary<MonoCallbackType, Type>
             {
@@ -25,10 +22,13 @@ namespace niscolas.UnityUtils.Core
                 {MonoCallbackType.OnApplicationQuit, typeof(OnApplicationQuitMonoHook)},
             };
 
+        private static readonly Dictionary<GameObject, MonoLifecycleHooksManager> Managers =
+            new Dictionary<GameObject, MonoLifecycleHooksManager>();
+
         private readonly Dictionary<MonoCallbackType, IMonoHook> _hooks = new
             Dictionary<MonoCallbackType, IMonoHook>();
 
-        public static void GetOrCreate(GameObject target, out MonoHookManager monoHookManager)
+        public static void GetOrCreate(GameObject target, out MonoLifecycleHooksManager monoHookManager)
         {
             if (!Managers.TryGetValue(target, out monoHookManager))
             {
@@ -42,14 +42,14 @@ namespace niscolas.UnityUtils.Core
             MonoCallbackType triggerCallbackType,
             MonoCallbackType unregisterMoment)
         {
-            GetOrCreate(target, out MonoHookManager monoHookManager);
+            GetOrCreate(target, out MonoLifecycleHooksManager monoHookManager);
             monoHookManager.AddAction(action, triggerCallbackType, unregisterMoment);
         }
 
         public static void TriggerOnMoment(
             GameObject target, Action action, MonoCallbackType triggerCallbackType)
         {
-            GetOrCreate(target, out MonoHookManager monoHookManager);
+            GetOrCreate(target, out MonoLifecycleHooksManager monoHookManager);
             monoHookManager.AddAction(action, triggerCallbackType);
         }
 
