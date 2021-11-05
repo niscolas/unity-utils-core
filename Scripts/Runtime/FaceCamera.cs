@@ -11,9 +11,9 @@ namespace niscolas.UnityUtils
         private Camera _camera;
 
         [SerializeField]
-        private LifecycleMoment _faceEvent = LifecycleMoment.Update;
+        private MonoCallbackType _faceEvent = MonoCallbackType.Update;
 
-        private MonoLifeCycle _lifecycle;
+        private MonoHookManager _lifecycle;
         private Transform _cameraTransform;
 
         private void Awake()
@@ -24,7 +24,7 @@ namespace niscolas.UnityUtils
                 _cameraTransform = _camera.transform;
             }
 
-            MonoLifeCycle.TriggerOnMoment(gameObject, Do, _faceEvent);
+            MonoHookManager.TriggerOnMoment(gameObject, Do, _faceEvent);
         }
 
         private void Do()
