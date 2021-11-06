@@ -15,5 +15,11 @@ namespace niscolas.UnityExtensions
             int flattenedIndex = width * row + col;
             return flattenedIndex;
         }
+
+        public static bool BitmaskEnumContainsValue<T>(this T bitmaskEnum, T value) where T : Enum
+        {
+            int valueAsInt = Convert.ToInt32(value);
+            return ( Convert.ToInt32(bitmaskEnum)  & valueAsInt) == valueAsInt;
+        }
     }
 }

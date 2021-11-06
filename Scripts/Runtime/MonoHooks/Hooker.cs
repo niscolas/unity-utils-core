@@ -16,7 +16,7 @@ namespace niscolas.UnityUtils.Core
         {
             base.Awake();
             
-            MonoLifecycleHooksManager.TriggerOnMoment(_gameObject, Trigger, _triggerMoment);
+            MonoLifecycleHooksManager.AutoTrigger(_gameObject, Trigger, _triggerMoment);
         }
 
         private void Trigger()

@@ -36,7 +36,7 @@ namespace niscolas.UnityUtils.Core
             }
         }
 
-        public static void TriggerOnMoment(
+        public static void AutoTrigger(
             GameObject target,
             Action action,
             MonoCallbackType triggerCallbackType,
@@ -46,7 +46,7 @@ namespace niscolas.UnityUtils.Core
             monoHookManager.AddAction(action, triggerCallbackType, unregisterMoment);
         }
 
-        public static void TriggerOnMoment(
+        public static void AutoTrigger(
             GameObject target, Action action, MonoCallbackType triggerCallbackType)
         {
             GetOrCreate(target, out MonoLifecycleHooksManager monoHookManager);
