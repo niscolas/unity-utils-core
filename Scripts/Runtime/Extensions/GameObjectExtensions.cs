@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using niscolas.UnityUtils.Core;
+using UnityEditor;
 using UnityEngine;
 
 namespace niscolas.UnityExtensions
@@ -11,6 +12,14 @@ namespace niscolas.UnityExtensions
         public static bool IsPrefab(this GameObject gameObject)
         {
             return gameObject.scene.rootCount == 0;
+        }
+
+        public static GameObject GetPrefab(this GameObject gameObject)
+        {
+#if UNITY_EDITOR
+            return PrefabUtility.GetNearestPrefabInstanceRoot(gameObject);
+#endif
+            return default;
         }
 
         public static T AddComponent<T>(this GameObject gameObject, T toAdd) where T : Component

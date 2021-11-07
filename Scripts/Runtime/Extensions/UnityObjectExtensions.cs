@@ -115,7 +115,10 @@ namespace niscolas.UnityExtensions
 
         public static Texture2D GetThumbnail(this Object obj)
         {
+#if UNITY_EDITOR
             return AssetPreview.GetMiniThumbnail(obj);
+#endif
+            return default;
         }
     }
 }
