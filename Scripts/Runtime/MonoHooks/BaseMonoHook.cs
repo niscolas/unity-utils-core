@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace niscolas.UnityUtils.Core
 {
+    [AddComponentMenu("")]
     public abstract class BaseMonoHook : CachedMonoBehaviour, IMonoHook
     {
         public event Action OnCallback;

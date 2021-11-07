@@ -4,7 +4,7 @@ using UnityUtils;
 
 namespace niscolas.UnityUtils.Core
 {
-    public class Hooker : CachedMonoBehaviour
+    public class UnityEventMonoHook : CachedMonoBehaviour
     {
         [SerializeField]
         private MonoCallbackType _triggerMoment;
