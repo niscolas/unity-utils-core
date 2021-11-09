@@ -26,6 +26,11 @@ namespace niscolas.UnityExtensions
             return substr;
         }
 
+        public static string SubstringFromLastIndexOf(this string str, char value)
+        {
+            return str.Substring(str.LastIndexOf(value) + 1);
+        }
+
         public static string FromSnakeToCamelCase(this string str)
         {
             return str
