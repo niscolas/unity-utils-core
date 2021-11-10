@@ -10,6 +10,7 @@
         LateUpdate,
         OnDisable,
         OnDestroy,
-        OnApplicationQuit
+        OnApplicationQuit,
+        None
     }
 }

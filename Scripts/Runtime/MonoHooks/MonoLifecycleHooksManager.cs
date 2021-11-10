@@ -95,6 +95,11 @@ namespace niscolas.UnityUtils.Core
         {
             monoHook = default;
 
+            if (monoCallbackType == MonoCallbackType.None)
+            {
+                return false;
+            }
+
             if (_hooks.TryGetValue(monoCallbackType, out monoHook))
             {
                 return true;
