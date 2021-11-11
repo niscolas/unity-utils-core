@@ -64,6 +64,12 @@ namespace niscolas.UnityUtils.Core
 
         public void AddAction(Action action, MonoCallbackType monoCallbackType)
         {
+            if (!_gameObject)
+            {
+                action.Invoke();
+                return;
+            }
+            
             if (!TryGetMonoHook(
                 monoCallbackType,
                 true,
