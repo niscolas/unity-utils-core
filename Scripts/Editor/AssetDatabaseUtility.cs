@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using FluentAssertions;
 using UnityEditor;
 using Object = UnityEngine.Object;
 
@@ -17,7 +18,7 @@ namespace niscolas.UnityUtils.Core.Editor
 
         public static IEnumerable<T> FindAllAssetsOfType<T>() where T : Object
         {
-            return (IEnumerable<T>) FindAllAssetsOfType(typeof(T));
+            return FindAllAssetsOfType(typeof(T)).Cast<T>();
         }
 
         public static IEnumerable<Object> FindAllAssetsOfType(Type assetType)
