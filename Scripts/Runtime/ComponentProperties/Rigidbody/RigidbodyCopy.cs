@@ -1,31 +1,30 @@
 ﻿using UnityEngine;
-using UnityUtils;
 
 namespace niscolas.UnityUtils.Core
 {
-	public class RigidbodyCopy : ComponentCopy<Rigidbody, RigidbodyProperties, RigidbodyHandledProperties>
-	{
-		public RigidbodyCopy() { }
+    public class RigidbodyCopy : ComponentCopy<Rigidbody, RigidbodyProperties, RigidbodyHandledProperties>
+    {
+        public RigidbodyCopy() { }
 
-		public RigidbodyCopy(Rigidbody component) : base(component) { }
+        public RigidbodyCopy(Rigidbody component) : base(component) { }
 
-		public RigidbodyCopy(Rigidbody rigidbody, RigidbodyHandledProperties handledProperties) : base(rigidbody,
-			handledProperties) { }
+        public RigidbodyCopy(Rigidbody rigidbody, RigidbodyHandledProperties handledProperties) : base(rigidbody,
+            handledProperties) { }
 
-		protected override RigidbodyProperties ExtractPropertiesFrom(Rigidbody component)
-		{
-			RigidbodyProperties properties = new RigidbodyProperties
-			{
-				Mass = component.mass,
-				Drag = component.drag,
-				AngularDrag = component.angularDrag,
-				UseGravity = component.useGravity,
-				IsKinematic = component.isKinematic,
-				CollisionDetectionMode = component.collisionDetectionMode,
-				Interpolation = component.interpolation
-			};
+        protected override RigidbodyProperties ExtractPropertiesFrom(Rigidbody component)
+        {
+            RigidbodyProperties properties = new RigidbodyProperties
+            {
+                Mass = component.mass,
+                Drag = component.drag,
+                AngularDrag = component.angularDrag,
+                UseGravity = component.useGravity,
+                IsKinematic = component.isKinematic,
+                CollisionDetectionMode = component.collisionDetectionMode,
+                Interpolation = component.interpolation
+            };
 
-			return properties;
-		}
-	}
+            return properties;
+        }
+    }
 }

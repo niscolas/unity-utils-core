@@ -45,13 +45,28 @@ namespace niscolas.UnityUtils.Core
 
         public void SelfApplyProperties(TProperties properties)
         {
-            if (!Component) return;
+            if (!Component)
+            {
+                return;
+            }
 
             _originalProperties = ExtractPropertiesFrom(Component);
 
             ApplyAllProperties(properties, Component);
         }
 
+        public void SelfApplyProperties(TProperties properties, THandledProperties handledProperties)
+        {
+            if (!Component)
+            {
+                return;
+            }
+
+            _originalProperties = ExtractPropertiesFrom(Component);
+
+            ApplyProperties(properties, Component, handledProperties);
+        }
+        
         public void ApplyProperties(
             TProperties properties, TComponent targetComponent, THandledProperties handledProperties)
         {
@@ -65,7 +80,10 @@ namespace niscolas.UnityUtils.Core
 
         public void ResetProperties()
         {
-            if (!Component) return;
+            if (!Component)
+            {
+                return;
+            }
 
             _originalProperties.ApplyAll(Component);
         }
