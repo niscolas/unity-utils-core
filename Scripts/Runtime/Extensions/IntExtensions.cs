@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using UnityEngine;
 
 namespace niscolas.UnityExtensions
 {
@@ -19,7 +21,25 @@ namespace niscolas.UnityExtensions
         public static bool BitmaskEnumContainsValue<T>(this T bitmaskEnum, T value) where T : Enum
         {
             int valueAsInt = Convert.ToInt32(value);
-            return ( Convert.ToInt32(bitmaskEnum)  & valueAsInt) == valueAsInt;
+            return (Convert.ToInt32(bitmaskEnum) & valueAsInt) == valueAsInt;
+        }
+
+        public static IEnumerable<int> EnumerableFor(this int from, int to)
+        {
+            if (from < to)
+            {
+                for (int i = from; i < to; i++)
+                {
+                    yield return i;
+                }
+            }
+            else
+            {
+                for (int i = from; i > to; i--)
+                {
+                    yield return i;
+                }
+            }
         }
     }
 }

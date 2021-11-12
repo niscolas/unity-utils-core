@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using niscolas.UnityExtensions;
 using UnityEngine;
 
 namespace niscolas.UnityUtils.Core
@@ -14,30 +15,26 @@ namespace niscolas.UnityUtils.Core
             float explosionRadius,
             float upwardsModifier = 0,
             ForceMode forceMode = ForceMode.Force,
-            params Collider[] collidersToExclude)
+            params Collider[] excludedColliders)
         {
             int resultCount = Physics.OverlapSphereNonAlloc(
                 explosionPosition, targetCheckRadius, results, layerMask);
 
-            bool shouldExcludeAnyCollider = collidersToExclude != null &&
-                                            collidersToExclude.Length > 0;
+            bool shouldExcludeAnyCollider = !excludedColliders.IsNullOrEmpty();
 
             for (int i = 0; i < resultCount; i++)
             {
-                if (!shouldExcludeAnyCollider ||
-                    !results[i] ||
-                    collidersToExclude.Contains(results[i]))
+                if (results[i] &&
+                    (!shouldExcludeAnyCollider || !excludedColliders.Contains(results[i])))
                 {
-                    continue;
+                    ExplodeGameObject(
+                        results[i].gameObject,
+                        explosionPosition,
+                        explosionForce,
+                        explosionRadius,
+                        upwardsModifier,
+                        forceMode);
                 }
-
-                ExplodeGameObject(
-                    results[i].gameObject,
-                    explosionPosition,
-                    explosionForce,
-                    explosionRadius,
-                    upwardsModifier,
-                    forceMode);
             }
         }
 
