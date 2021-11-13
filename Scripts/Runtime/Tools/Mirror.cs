@@ -1,118 +1,122 @@
-﻿using UnityEngine;
+﻿using niscolas.UnityUtils.Core;
+using UnityEngine;
 
 namespace UnityUtils
 {
-	[ExecuteAlways]
-	public class Mirror : MonoBehaviour
-	{
-		private enum MirrorType
-		{
-			None,
-			Copy,
-			Mirror
-		}
+    public class Mirror : ExecuteAlwaysMonoBehaviour
+    {
+        private enum MirrorType
+        {
+            None,
+            Copy,
+            Mirror
+        }
 
-		[SerializeField]
-		private Transform _normalTransform;
+        [SerializeField]
+        private Transform _normalTransform;
 
-		[SerializeField]
-		private Transform _mirroredTransform;
+        [SerializeField]
+        private Transform _mirroredTransform;
 
-		[Header("Position")]
-		[SerializeField]
-		private MirrorType _positionXMirrorType = MirrorType.Mirror;
+        [Header("Position")]
+        [SerializeField]
+        private MirrorType _positionXMirrorType = MirrorType.Mirror;
 
-		[SerializeField]
-		private MirrorType _positionYMirrorType = MirrorType.Copy;
+        [SerializeField]
+        private MirrorType _positionYMirrorType = MirrorType.Copy;
 
-		[SerializeField]
-		private MirrorType _positionZMirrorType = MirrorType.Copy;
+        [SerializeField]
+        private MirrorType _positionZMirrorType = MirrorType.Copy;
 
-		[Header("Rotation")]
-		[SerializeField]
-		private MirrorType _rotationXMirrorType = MirrorType.Copy;
-		
-		[SerializeField]
-		private MirrorType _rotationYMirrorType = MirrorType.Mirror;
+        [Header("Rotation")]
+        [SerializeField]
+        private MirrorType _rotationXMirrorType = MirrorType.Copy;
 
-		[SerializeField]
-		private MirrorType _rotationZMirrorType = MirrorType.Mirror;
+        [SerializeField]
+        private MirrorType _rotationYMirrorType = MirrorType.Mirror;
 
-		[Header("Scale")]
-		[SerializeField]
-		private MirrorType _scaleXMirrorType = MirrorType.Copy;
+        [SerializeField]
+        private MirrorType _rotationZMirrorType = MirrorType.Mirror;
 
-		[SerializeField]
-		private MirrorType _scaleYMirrorType = MirrorType.Copy;
+        [Header("Scale")]
+        [SerializeField]
+        private MirrorType _scaleXMirrorType = MirrorType.Copy;
 
-		[SerializeField]
-		private MirrorType _scaleZMirrorType = MirrorType.Copy;
+        [SerializeField]
+        private MirrorType _scaleYMirrorType = MirrorType.Copy;
 
-		private void Update()
-		{
-			if (!_normalTransform || !_mirroredTransform) return;
+        [SerializeField]
+        private MirrorType _scaleZMirrorType = MirrorType.Copy;
 
-			MirrorPosition();
-			MirrorRotation();
-			MirrorScale();
-		}
+        protected override void Inner_Update()
+        {
+            if (!_normalTransform || !_normalTransform.hasChanged ||
+                !_mirroredTransform || !_mirroredTransform.hasChanged)
+            {
+                return;
+            }
 
-		private void MirrorPosition()
-		{
-			_mirroredTransform.localPosition = ComputeMirror(
-				_normalTransform.localPosition,
-				_mirroredTransform.localPosition,
-				_positionXMirrorType,
-				_positionYMirrorType,
-				_positionZMirrorType);
-		}
+            MirrorPosition();
+            MirrorRotation();
+            MirrorScale();
+        }
 
-		private void MirrorRotation()
-		{
-			_mirroredTransform.localEulerAngles = ComputeMirror(
-				_normalTransform.localEulerAngles,
-				_mirroredTransform.localEulerAngles,
-				_rotationXMirrorType,
-				_rotationYMirrorType,
-				_rotationZMirrorType);
-		}
+        private void MirrorPosition()
+        {
+            _mirroredTransform.localPosition = ComputeMirror(
+                _normalTransform.localPosition,
+                _mirroredTransform.localPosition,
+                _positionXMirrorType,
+                _positionYMirrorType,
+                _positionZMirrorType);
+        }
 
-		private void MirrorScale()
-		{
-			_mirroredTransform.localScale = ComputeMirror(
-				_normalTransform.localScale,
-				_mirroredTransform.localScale,
-				_scaleXMirrorType,
-				_scaleYMirrorType,
-				_scaleZMirrorType);
-		}
+        private void MirrorRotation()
+        {
+            _mirroredTransform.localEulerAngles = ComputeMirror(
+                _normalTransform.localEulerAngles,
+                _mirroredTransform.localEulerAngles,
+                _rotationXMirrorType,
+                _rotationYMirrorType,
+                _rotationZMirrorType);
+        }
 
-		private Vector3 ComputeMirror(
-			Vector3 mirrorTargetValue,
-			Vector3 currentMirroredValue,
-			MirrorType xMirrorType,
-			MirrorType yMirrorType,
-			MirrorType zMirrorType)
-		{
-			float resultX = ComputeMirror(mirrorTargetValue.x, currentMirroredValue.x, xMirrorType);
-			float resultY = ComputeMirror(mirrorTargetValue.y, currentMirroredValue.y, yMirrorType);
-			float resultZ = ComputeMirror(mirrorTargetValue.z, currentMirroredValue.z, zMirrorType);
-			return new Vector3(resultX, resultY, resultZ);
-		}
+        private void MirrorScale()
+        {
+            _mirroredTransform.localScale = ComputeMirror(
+                _normalTransform.localScale,
+                _mirroredTransform.localScale,
+                _scaleXMirrorType,
+                _scaleYMirrorType,
+                _scaleZMirrorType);
+        }
 
-		private float ComputeMirror(float mirrorTargetValue, float currentMirroredValue, MirrorType mirrorType)
-		{
-			switch (mirrorType)
-			{
-				case MirrorType.Copy:
-					return mirrorTargetValue;
+        private Vector3 ComputeMirror(
+            Vector3 mirrorTargetValue,
+            Vector3 currentMirroredValue,
+            MirrorType xMirrorType,
+            MirrorType yMirrorType,
+            MirrorType zMirrorType)
+        {
+            float resultX = ComputeMirror(mirrorTargetValue.x, currentMirroredValue.x, xMirrorType);
+            float resultY = ComputeMirror(mirrorTargetValue.y, currentMirroredValue.y, yMirrorType);
+            float resultZ = ComputeMirror(mirrorTargetValue.z, currentMirroredValue.z, zMirrorType);
+            return new Vector3(resultX, resultY, resultZ);
+        }
 
-				case MirrorType.Mirror:
-					return -mirrorTargetValue;
+        private float ComputeMirror(float mirrorTargetValue, float currentMirroredValue, MirrorType mirrorType)
+        {
+            switch (mirrorType)
+            {
+                case MirrorType.Copy:
+                    return mirrorTargetValue;
 
-				default:
-					return currentMirroredValue;
-			}
-		}
-	}
+                case MirrorType.Mirror:
+                    return -mirrorTargetValue;
+
+                default:
+                    return currentMirroredValue;
+            }
+        }
+    }
 }

@@ -8,7 +8,7 @@ namespace niscolas.UnityUtils.Core
     {
         [SerializeField]
         private MonoCallbackType _triggerMoment;
-
+        
         [SerializeField]
         private UnityEvent _onTrigger;
 
