@@ -1,6 +1,4 @@
-﻿using System;
-using niscolas.UnityExtensions;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace niscolas.UnityUtils.Core
 {
@@ -8,7 +6,7 @@ namespace niscolas.UnityUtils.Core
     public abstract class ExecuteAlwaysMonoBehaviour : CachedMonoBehaviour
     {
         [SerializeField]
-        private ScriptExecutionMode _executionMode;
+        private ScriptExecutionMode _executionMode = ScriptExecutionMode.All;
 
         protected virtual void Inner_Awake() { }
         protected virtual void Inner_OnEnable() { }
@@ -89,17 +87,17 @@ namespace niscolas.UnityUtils.Core
         {
             bool result = false;
 
-            if (_executionMode.BitmaskEnumContainsValue(ScriptExecutionMode.EditMode))
+            if (_executionMode.HasFlag(ScriptExecutionMode.EditMode))
             {
                 result = ApplicationUtility.IsEditMode();
             }
 
-            if (_executionMode.BitmaskEnumContainsValue(ScriptExecutionMode.PlayMode))
+            if (_executionMode.HasFlag(ScriptExecutionMode.PlayMode))
             {
                 result = result || ApplicationUtility.IsEditorPlayMode();
             }
 
-            if (_executionMode.BitmaskEnumContainsValue(ScriptExecutionMode.Player))
+            if (_executionMode.HasFlag(ScriptExecutionMode.Player))
             {
                 result = result || ApplicationUtility.IsPlayer();
             }

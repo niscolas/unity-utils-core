@@ -15,6 +15,9 @@ namespace niscolas.UnityUtils.Core
         [SerializeField]
         private UnityEvent _onDisabled;
 
+        [SerializeField]
+        private UnityEvent<bool> _onStateSet;
+
         public void Toggle()
         {
             SetState(!_currentState);
@@ -31,6 +34,7 @@ namespace niscolas.UnityUtils.Core
             {
                 _onDisabled?.Invoke();
             }
+            _onStateSet?.Invoke(_currentState);
         }
     }
 }
