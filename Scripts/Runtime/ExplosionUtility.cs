@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using niscolas.UnityExtensions;
 using UnityEngine;
 
@@ -17,24 +18,28 @@ namespace niscolas.UnityUtils.Core
             ForceMode forceMode = ForceMode.Force,
             params Collider[] excludedColliders)
         {
-            int resultCount = Physics.OverlapSphereNonAlloc(
+            Physics.OverlapSphereNonAlloc(
                 explosionPosition, targetCheckRadius, results, layerMask);
 
             bool shouldExcludeAnyCollider = !excludedColliders.IsNullOrEmpty();
 
-            for (int i = 0; i < resultCount; i++)
+            results = results
+                .Where(r =>
+                    r &&
+                    (!shouldExcludeAnyCollider || !excludedColliders.Contains(r)))
+                .GroupBy(r => r.gameObject)
+                .Select(r => r.First())
+                .ToArray();
+
+            foreach (Collider result in results)
             {
-                if (results[i] &&
-                    (!shouldExcludeAnyCollider || !excludedColliders.Contains(results[i])))
-                {
-                    ExplodeGameObject(
-                        results[i].gameObject,
-                        explosionPosition,
-                        explosionForce,
-                        explosionRadius,
-                        upwardsModifier,
-                        forceMode);
-                }
+                ExplodeGameObject(
+                    result.gameObject,
+                    explosionPosition,
+                    explosionForce,
+                    explosionRadius,
+                    upwardsModifier,
+                    forceMode);
             }
         }
 
