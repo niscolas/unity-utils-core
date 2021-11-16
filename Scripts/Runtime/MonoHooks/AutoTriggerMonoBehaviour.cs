@@ -9,7 +9,7 @@ namespace niscolas.UnityUtils.Core
         [SerializeField]
         private MonoCallbackType _autoTriggerCallback;
 
-        protected abstract void Do();
+        public abstract void Do();
         
         protected override void Awake()
         {
