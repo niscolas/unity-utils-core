@@ -41,5 +41,13 @@ namespace niscolas.UnityExtensions
                 }
             }
         }
+
+        public static void DoNTimes(this int n, Action<int> action)
+        {
+            for (int i = 0; i < n; i++)
+            {
+                action.Invoke(i);
+            }
+        }
     }
 }
