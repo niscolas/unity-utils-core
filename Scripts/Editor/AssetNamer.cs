@@ -1,5 +1,4 @@
 ﻿using niscolas.UnityExtensions;
-using Sirenix.Utilities;
 using UnityEditor;
 using UnityEngine;
 
@@ -17,7 +16,7 @@ namespace niscolas.UnityUtils.Core.Editor
         {
             asset.Rename(asset.name.FromSnakeToCamelCase());
         }
-        
+       
         [MenuItem(Constants.AssetMenuItemPrefix + "Naming/snake_case => PascalCase")]
         public static void FromSnakeCaseToPascalCaseAll()
         {
