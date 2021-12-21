@@ -1,5 +1,5 @@
 ﻿# :sunny: UnityUtils.Core
-> :bulb: The main dependency for my other reusable modules
+> :bulb: The main dependency for my other Unity reusable modules
 
 ## :nut_and_bolt: Installation
 1. Clone :arrow_down: this repo inside your Unity project;

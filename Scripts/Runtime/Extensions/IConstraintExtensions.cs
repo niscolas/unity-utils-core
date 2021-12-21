@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.Animations;
 
-namespace niscolas.UnityUtils.Core
+namespace niscolas.UnityExtensions
 {
     public static class IConstraintExtensions
     {
