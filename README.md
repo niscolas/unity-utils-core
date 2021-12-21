@@ -6,5 +6,5 @@
 2. Install the dependencies :point_down:
 
 ## :chains: Dependencies
-- :zap::chains: Dependency free!
+- [:hammer: Odin Inspector Attributes DLL or Stub File](https://discord.com/channels/355444042009673728/355817720182341632/898236644270964787)
 

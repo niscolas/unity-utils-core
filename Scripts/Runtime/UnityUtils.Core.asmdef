@@ -1,9 +1,7 @@
 {
     "name": "UnityUtils.Core",
     "rootNamespace": "",
-    "references": [
-        "GUID:a8d015c3e0000b8498299a9f0decdd0d"
-    ],
+    "references": [],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
