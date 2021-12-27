@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 
-namespace UnityUtils
+namespace niscolas.UnityUtils.Core
 {
-	public class UnityTimeService : IUnityTimeService
-	{
-		public float DeltaTime => Time.deltaTime;
-		public float FixedDeltaTime => Time.fixedDeltaTime;
-	}
+    public class UnityTimeService : IUnityTimeService
+    {
+        public float DeltaTime => Time.deltaTime;
+        public float FixedDeltaTime => Time.fixedDeltaTime;
+    }
 }

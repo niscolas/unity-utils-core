@@ -1,8 +1,7 @@
-﻿using niscolas.UnityExtensions;
+﻿using niscolas.UnityUtils.Core.Extensions;
 using UnityEngine;
-using UnityEngine.Assertions;
 
-namespace UnityUtils
+namespace niscolas.UnityUtils.Core
 {
     public class IndividualGravity : MonoBehaviour
     {

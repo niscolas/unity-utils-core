@@ -1,13 +1,9 @@
 ﻿using System;
-using UnityEngine;
 
 namespace niscolas.UnityUtils.Core
 {
-    [AddComponentMenu("")]
     public abstract class BaseMonoHook : CachedMonoBehaviour, IMonoHook
     {
-        public event Action OnCallback;
-
         public void Subscribe(Action action)
         {
             if (!BeforeSubscribe(action))
@@ -29,6 +25,8 @@ namespace niscolas.UnityUtils.Core
             OnCallback -= action;
             AfterUnsubscribe(action);
         }
+
+        public event Action OnCallback;
 
         protected void Call()
         {

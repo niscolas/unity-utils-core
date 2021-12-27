@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
-using UnityUtils;
 
 namespace niscolas.UnityUtils.Core
 {
@@ -8,14 +7,14 @@ namespace niscolas.UnityUtils.Core
     {
         [SerializeField]
         private MonoCallbackType _triggerMoment;
-        
+
         [SerializeField]
         private UnityEvent _onTrigger;
 
         protected override void Awake()
         {
             base.Awake();
-            
+
             MonoLifecycleHooksManager.AutoTrigger(_gameObject, Trigger, _triggerMoment);
         }
 

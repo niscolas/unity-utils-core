@@ -8,7 +8,7 @@ namespace niscolas.UnityUtils.Core
         {
             return Application.isEditor && !Application.isPlaying;
         }
-        
+
         public static bool IsEditorPlayMode()
         {
             return Application.isEditor && Application.isPlaying;

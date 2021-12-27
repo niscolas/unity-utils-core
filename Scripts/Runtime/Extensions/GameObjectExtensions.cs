@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using niscolas.UnityUtils.Core;
 using UnityEditor;
 using UnityEngine;
 
-namespace niscolas.UnityExtensions
+namespace niscolas.UnityUtils.Core.Extensions
 {
     public static class GameObjectExtensions
     {
@@ -139,7 +137,7 @@ namespace niscolas.UnityExtensions
 
         public static List<GameObject> FindChildrenWithTag(this Transform parent, string tag)
         {
-            List<GameObject> taggedGameObjects = new List<GameObject>();
+            List<GameObject> taggedGameObjects = new();
 
             for (int i = 0; i < parent.childCount; i++)
             {

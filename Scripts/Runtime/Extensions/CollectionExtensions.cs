@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace niscolas.UnityExtensions
+namespace niscolas.UnityUtils.Core.Extensions
 {
     public static class CollectionExtensions
     {

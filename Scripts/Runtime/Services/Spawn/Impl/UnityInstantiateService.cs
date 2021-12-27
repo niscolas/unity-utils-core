@@ -1,8 +1,8 @@
-﻿using UnityEditor;
+﻿using niscolas.UnityUtils.Core.Extensions;
+using UnityEditor;
 using UnityEngine;
-using niscolas.UnityExtensions;
 
-namespace UnityUtils
+namespace niscolas.UnityUtils.Core
 {
     public class UnityInstantiateService : ISpawnService
     {

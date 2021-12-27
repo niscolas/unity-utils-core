@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace niscolas.UnityUtils.Core.Editor
 {
-    public class SetRectTransformAnchorsToCornersHotkey
+    public static class SetRectTransformAnchorsToCornersHotkey
     {
         [MenuItem("Context/RectTransform/Set Anchors to Corners " +
                   MenuItemHotkey.AltCtrlShift + "a")]

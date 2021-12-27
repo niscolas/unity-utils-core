@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Random = UnityEngine.Random;
 
-namespace niscolas.UnityUtils
+namespace niscolas.UnityUtils.Core
 {
     public static class EnumUtility
     {

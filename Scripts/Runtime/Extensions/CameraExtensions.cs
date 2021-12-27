@@ -1,33 +1,33 @@
 ﻿using UnityEngine;
 
-namespace niscolas.UnityExtensions
+namespace niscolas.UnityUtils.Core.Extensions
 {
-	public static class CameraExtensions
-	{
-		public static Vector3 GetPointerPosition(this Camera camera)
-		{
-			Ray ray = camera.ScreenPointToRay(Input.mousePosition);
+    public static class CameraExtensions
+    {
+        public static Vector3 GetPointerPosition(this Camera camera)
+        {
+            Ray ray = camera.ScreenPointToRay(Input.mousePosition);
 
-			Vector3 result = Physics.Raycast(ray, out RaycastHit hit) ? hit.point : Vector3.zero;
+            Vector3 result = Physics.Raycast(ray, out RaycastHit hit) ? hit.point : Vector3.zero;
 
-			return result;
-		}
+            return result;
+        }
 
-		public static bool GetIsWorldPointVisible(this Camera camera, Vector3 position)
-		{
-			Vector3 viewportPoint = camera.WorldToViewportPoint(position);
+        public static bool GetIsWorldPointVisible(this Camera camera, Vector3 position)
+        {
+            Vector3 viewportPoint = camera.WorldToViewportPoint(position);
 
-			return
-				viewportPoint.x >= 0 && viewportPoint.x <= 1 &&
-				viewportPoint.y >= 0 && viewportPoint.y <= 1 &&
-				viewportPoint.z > 0;
-		}
+            return
+                viewportPoint.x >= 0 && viewportPoint.x <= 1 &&
+                viewportPoint.y >= 0 && viewportPoint.y <= 1 &&
+                viewportPoint.z > 0;
+        }
 
-		public static Vector3 GetWorldPositionWithRaycast(this Camera camera, Vector3 viewportPos)
-		{
-			Ray ray = camera.ViewportPointToRay(viewportPos);
+        public static Vector3 GetWorldPositionWithRaycast(this Camera camera, Vector3 viewportPos)
+        {
+            Ray ray = camera.ViewportPointToRay(viewportPos);
 
-			return Physics.Raycast(ray, out RaycastHit hit) ? hit.point : Vector3.zero;
-		}
-	}
+            return Physics.Raycast(ray, out RaycastHit hit) ? hit.point : Vector3.zero;
+        }
+    }
 }

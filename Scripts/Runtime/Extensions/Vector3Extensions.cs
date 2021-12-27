@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityExtensions;
 using Random = UnityEngine.Random;
 
-namespace niscolas.UnityExtensions
+namespace niscolas.UnityUtils.Core.Extensions
 {
     public static class Vector3Extensions
     {
@@ -154,10 +153,10 @@ namespace niscolas.UnityExtensions
             source.x = setX ? other.x : source.x;
             source.y = setY ? other.y : source.y;
             source.z = setZ ? other.z : source.z;
-            
+
             return source;
         }
-        
+
         public static Vector3 NearestPositionOnLine(
             this Vector3 testPosition, Vector3 lineStart, Vector3 lineEnd)
         {

@@ -1,6 +1,5 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using niscolas.UnityExtensions;
+﻿using System.Linq;
+using niscolas.UnityUtils.Core.Extensions;
 using UnityEngine;
 
 namespace niscolas.UnityUtils.Core

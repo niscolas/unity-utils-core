@@ -8,15 +8,6 @@ namespace niscolas.UnityUtils.Core
         [SerializeField]
         private ScriptExecutionMode _executionMode = ScriptExecutionMode.All;
 
-        protected virtual void Inner_Awake() { }
-        protected virtual void Inner_OnEnable() { }
-        protected virtual void Inner_Start() { }
-        protected virtual void Inner_Update() { }
-        protected virtual void Inner_FixedUpdate() { }
-        protected virtual void Inner_LateUpdate() { }
-        protected virtual void Inner_OnDisable() { }
-        protected virtual void Inner_OnDestroy() { }
-
         protected override void Awake()
         {
             base.Awake();
@@ -24,14 +15,6 @@ namespace niscolas.UnityUtils.Core
             if (CheckShouldRun())
             {
                 Inner_Awake();
-            }
-        }
-
-        private void OnEnable()
-        {
-            if (CheckShouldRun())
-            {
-                Inner_OnEnable();
             }
         }
 
@@ -67,6 +50,14 @@ namespace niscolas.UnityUtils.Core
             }
         }
 
+        private void OnEnable()
+        {
+            if (CheckShouldRun())
+            {
+                Inner_OnEnable();
+            }
+        }
+
         private void OnDisable()
         {
             if (CheckShouldRun())
@@ -82,6 +73,15 @@ namespace niscolas.UnityUtils.Core
                 Inner_OnDestroy();
             }
         }
+
+        protected virtual void Inner_Awake() { }
+        protected virtual void Inner_OnEnable() { }
+        protected virtual void Inner_Start() { }
+        protected virtual void Inner_Update() { }
+        protected virtual void Inner_FixedUpdate() { }
+        protected virtual void Inner_LateUpdate() { }
+        protected virtual void Inner_OnDisable() { }
+        protected virtual void Inner_OnDestroy() { }
 
         protected bool CheckShouldRun()
         {

@@ -1,6 +1,4 @@
-﻿using niscolas.UnityUtils.Core;
-using UnityEngine;
-using UnityUtils;
+﻿using UnityEngine;
 
 namespace niscolas.UnityUtils.Core
 {
@@ -9,12 +7,12 @@ namespace niscolas.UnityUtils.Core
         [SerializeField]
         private MonoCallbackType _autoTriggerCallback;
 
-        public abstract void Do();
-        
         protected override void Awake()
         {
             base.Awake();
             MonoLifecycleHooksManager.AutoTrigger(_gameObject, Do, _autoTriggerCallback);
         }
+
+        public abstract void Do();
     }
 }

@@ -34,6 +34,7 @@ namespace niscolas.UnityUtils.Core
             {
                 _onDisabled?.Invoke();
             }
+
             _onStateSet?.Invoke(_currentState);
         }
     }

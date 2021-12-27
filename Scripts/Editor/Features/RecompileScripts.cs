@@ -3,7 +3,7 @@ using UnityEditor.Compilation;
 
 namespace niscolas.UnityUtils.Core.Editor
 {
-    public class RecompileScripts
+    public static class RecompileScripts
     {
         [MenuItem(Constants.ToolsMenuItemPrefix + "Recompile Scripts")]
         public static void Do()

@@ -1,11 +1,9 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using UnityExtensions;
 using Random = UnityEngine.Random;
 
-namespace niscolas.UnityExtensions
+namespace niscolas.UnityUtils.Core.Extensions
 {
     public static class ListExtensions
     {
@@ -28,7 +26,10 @@ namespace niscolas.UnityExtensions
 
         public static void SafeForEach<T>(this IList<T> list, Action<T> action, bool removeNullElements = true)
         {
-            if (list.IsNullOrEmpty()) return;
+            if (list.IsNullOrEmpty())
+            {
+                return;
+            }
 
             for (int i = 0; i < list.Count; i++)
             {
@@ -48,14 +49,20 @@ namespace niscolas.UnityExtensions
 
         public static void AddIfNotContains<T>(this IList<T> list, T element)
         {
-            if (list == null || list.Contains(element)) return;
+            if (list == null || list.Contains(element))
+            {
+                return;
+            }
 
             list.Add(element);
         }
 
         public static void SafeRemove<T>(this IList<T> list, T element)
         {
-            if (list.IsNullOrEmpty()) return;
+            if (list.IsNullOrEmpty())
+            {
+                return;
+            }
 
             if (list.Contains(element))
             {

@@ -1,4 +1,4 @@
-﻿using niscolas.UnityExtensions;
+﻿using niscolas.UnityUtils.Core.Extensions;
 using UnityEditor;
 using UnityEngine;
 
@@ -27,7 +27,7 @@ namespace niscolas.UnityUtils.Core.Editor
 
             Debug.Log(debugText);
         }
-        
+
         [MenuItem(Constants.AssetMenuItemPrefix + "Debug Name with Extension")]
         public static void DebugNameWithExtension()
         {

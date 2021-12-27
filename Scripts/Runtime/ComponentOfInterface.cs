@@ -2,7 +2,7 @@
 
 // original author: https://github.com/Deadcows
 
-namespace niscolas.UnityUtils.Core.Editor
+namespace niscolas.UnityUtils.Core
 {
     public readonly struct ComponentOfInterface<T>
     {

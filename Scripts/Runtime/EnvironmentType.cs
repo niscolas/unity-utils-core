@@ -20,20 +20,16 @@ namespace niscolas.UnityUtils.Core
                 {
                     return EnvironmentType.PlayMode;
                 }
-                else
-                {
-                    return EnvironmentType.EditMode;
-                }
+
+                return EnvironmentType.EditMode;
             }
-            
+
             if (Debug.isDebugBuild)
             {
                 return EnvironmentType.DebugBuild;
             }
-            else
-            {
-                return EnvironmentType.Build;
-            }
+
+            return EnvironmentType.Build;
         }
 
         public static bool IsCurrentEnvironment(this EnvironmentType gameEnvironment)

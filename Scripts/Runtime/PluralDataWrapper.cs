@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace BestLostNFound
+namespace niscolas.UnityUtils.Core
 {
     public abstract class PluralDataWrapper<T> : List<T>
     {

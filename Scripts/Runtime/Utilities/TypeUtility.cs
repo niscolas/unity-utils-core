@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Reflection;
-using niscolas.UnityExtensions;
-using niscolas.UnityUtils.Core;
+using niscolas.UnityUtils.Core.Extensions;
 
-namespace niscolasPlugins.UnityUtils.Core
+namespace niscolas.UnityUtils.Core
 {
     public static class TypeUtility
     {

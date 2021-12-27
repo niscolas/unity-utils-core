@@ -1,11 +1,47 @@
 ﻿using UnityEditor;
 using UnityEngine;
 
-namespace niscolas.UnityExtensions
+namespace niscolas.UnityUtils.Core.Extensions
 {
     public static class UnityObjectExtensions
     {
         private const char UnityDirSeparator = '/';
+
+        public static bool IsUnityNull(this object obj)
+        {
+            if (obj is Object unityObj)
+            {
+                return !unityObj;
+            }
+
+            return obj == null;
+        }
+
+        public static bool TryGetGameObject(this Object unityObj, out GameObject gameObject)
+        {
+            gameObject = null;
+            switch (unityObj)
+            {
+                case GameObject possibleGameObject:
+                    gameObject = possibleGameObject;
+                    return true;
+
+                case Component component:
+                    gameObject = component.gameObject;
+                    return true;
+
+                default:
+                    return false;
+            }
+        }
+
+        public static Texture2D GetThumbnail(this Object obj)
+        {
+#if UNITY_EDITOR
+            return AssetPreview.GetMiniThumbnail(obj);
+#endif
+            return default;
+        }
 
 #if UNITY_EDITOR
         public static string NameWithExtension(this Object asset)
@@ -84,41 +120,5 @@ namespace niscolas.UnityExtensions
             }
         }
 #endif
-
-        public static bool IsUnityNull(this object obj)
-        {
-            if (obj is Object unityObj)
-            {
-                return !unityObj;
-            }
-
-            return obj == null;
-        }
-
-        public static bool TryGetGameObject(this Object unityObj, out GameObject gameObject)
-        {
-            gameObject = null;
-            switch (unityObj)
-            {
-                case GameObject possibleGameObject:
-                    gameObject = possibleGameObject;
-                    return true;
-
-                case Component component:
-                    gameObject = component.gameObject;
-                    return true;
-
-                default:
-                    return false;
-            }
-        }
-
-        public static Texture2D GetThumbnail(this Object obj)
-        {
-#if UNITY_EDITOR
-            return AssetPreview.GetMiniThumbnail(obj);
-#endif
-            return default;
-        }
     }
 }

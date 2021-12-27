@@ -1,149 +1,149 @@
 ﻿using System.Collections.Generic;
-using niscolas.UnityExtensions;
+using niscolas.UnityUtils.Core.Extensions;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace UnityUtils
+namespace niscolas.UnityUtils.Core
 {
-	public class LinearLayoutGroup3D : MonoBehaviour
-	{
-		[Required]
-		[SerializeField]
-		private Transform startingPoint;
+    public class LinearLayoutGroup3D : MonoBehaviour
+    {
+        [Required]
+        [SerializeField]
+        private Transform startingPoint;
 
-		[Required]
-		[SerializeField]
-		private Transform endingPoint;
+        [Required]
+        [SerializeField]
+        private Transform endingPoint;
 
-		[SerializeField]
-		private Transform itemsContainer;
+        [SerializeField]
+        private Transform itemsContainer;
 
-		[SerializeField]
-		private bool _destroyOnRemoval;
+        [SerializeField]
+        private bool _destroyOnRemoval;
 
-		[Header("Events")]
-		[SerializeField]
-		private UnityEvent<GameObject> _elementRemoved;
+        [Header("Events")]
+        [SerializeField]
+        private UnityEvent<GameObject> _elementRemoved;
 
-		public readonly List<Transform> Items = new List<Transform>();
+        public readonly List<Transform> Items = new();
 
-		public Transform ItemsContainer => itemsContainer;
+        public Transform ItemsContainer => itemsContainer;
 
-		private void Awake()
-		{
-			if (itemsContainer != null)
-			{
-				return;
-			}
+        private void Awake()
+        {
+            if (itemsContainer != null)
+            {
+                return;
+            }
 
-			itemsContainer = new GameObject("ItemsContainer").transform;
-			itemsContainer.SetParent(transform);
-		}
+            itemsContainer = new GameObject("ItemsContainer").transform;
+            itemsContainer.SetParent(transform);
+        }
 
-		public void AddItem(Transform item)
-		{
-			if (item == null)
-			{
-				return;
-			}
+        public void AddItem(Transform item)
+        {
+            if (item == null)
+            {
+                return;
+            }
 
-			Items.Add(item);
-			item.SetParent(itemsContainer);
+            Items.Add(item);
+            item.SetParent(itemsContainer);
 
-			RearrangeItems();
-		}
+            RearrangeItems();
+        }
 
-		public void RemoveItem(Transform item)
-		{
-			if (item == null)
-			{
-				return;
-			}
+        public void RemoveItem(Transform item)
+        {
+            if (item == null)
+            {
+                return;
+            }
 
-			Items.Remove(item);
+            Items.Remove(item);
 
-			RearrangeItems();
-		}
+            RearrangeItems();
+        }
 
-		public void ReplaceAt(int index, Transform newItem)
-		{
-			if (index.IsValidIndex(Items.Count))
-			{
-				Replace(Items[index], newItem);
-			}
-		}
+        public void ReplaceAt(int index, Transform newItem)
+        {
+            if (index.IsValidIndex(Items.Count))
+            {
+                Replace(Items[index], newItem);
+            }
+        }
 
-		public void Replace(Transform currentItem, Transform newItem)
-		{
-			Items.Replace(currentItem, newItem);
+        public void Replace(Transform currentItem, Transform newItem)
+        {
+            Items.Replace(currentItem, newItem);
 
-			newItem.SetParent(itemsContainer);
-			newItem.transform.position = currentItem.position;
+            newItem.SetParent(itemsContainer);
+            newItem.transform.position = currentItem.position;
 
-			Destroy(currentItem.gameObject);
-		}
+            Destroy(currentItem.gameObject);
+        }
 
-		public void RemoveLast()
-		{
-			RemoveAt(Items.Count - 1);
-		}
+        public void RemoveLast()
+        {
+            RemoveAt(Items.Count - 1);
+        }
 
-		public void RemoveAt(int index)
-		{
-			if (!index.IsValidIndex(Items.Count))
-			{
-				return;
-			}
+        public void RemoveAt(int index)
+        {
+            if (!index.IsValidIndex(Items.Count))
+            {
+                return;
+            }
 
-			Transform itemToRemove = Items[index];
+            Transform itemToRemove = Items[index];
 
-			Remove(itemToRemove);
-		}
+            Remove(itemToRemove);
+        }
 
-		public void Remove(Transform item)
-		{
-			if (!item)
-			{
-				return;
-			}
+        public void Remove(Transform item)
+        {
+            if (!item)
+            {
+                return;
+            }
 
-			Items.Remove(item);
-			
-			if (_destroyOnRemoval)
-			{
-				Destroy(item.gameObject);
-			}
-			else
-			{
-				item.gameObject.SetActive(false);
-			}
+            Items.Remove(item);
 
-			RearrangeItems();
-		}
+            if (_destroyOnRemoval)
+            {
+                Destroy(item.gameObject);
+            }
+            else
+            {
+                item.gameObject.SetActive(false);
+            }
 
-		public void RemoveAll()
-		{
-			for (int i = 0; i < Items.Count; i++)
-			{
-				RemoveAt(0);
-			}
-		}
+            RearrangeItems();
+        }
 
-		private void RearrangeItems()
-		{
-			Vector3[] itemsPositions = startingPoint.position.GetPointsBetween(endingPoint.position, Items.Count);
-			for (int i = 0; i < Items.Count; i++)
-			{
-				Items[i].position = itemsPositions[i];
-			}
-		}
+        public void RemoveAll()
+        {
+            for (int i = 0; i < Items.Count; i++)
+            {
+                RemoveAt(0);
+            }
+        }
 
-		public void ClearItems()
-		{
-			Items.Clear();
+        private void RearrangeItems()
+        {
+            Vector3[] itemsPositions = startingPoint.position.GetPointsBetween(endingPoint.position, Items.Count);
+            for (int i = 0; i < Items.Count; i++)
+            {
+                Items[i].position = itemsPositions[i];
+            }
+        }
 
-			itemsContainer.DestroyChildren();
-		}
-	}
+        public void ClearItems()
+        {
+            Items.Clear();
+
+            itemsContainer.DestroyChildren();
+        }
+    }
 }

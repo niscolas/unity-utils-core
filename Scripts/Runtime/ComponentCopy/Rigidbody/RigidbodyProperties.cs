@@ -25,7 +25,7 @@ namespace niscolas.UnityUtils.Core
 
         public void ApplyAll(Rigidbody component)
         {
-            RigidbodyHandledProperties handledProperties = new RigidbodyHandledProperties
+            RigidbodyHandledProperties handledProperties = new()
             {
                 CopyMass = true,
                 CopyDrag = true,
@@ -33,7 +33,7 @@ namespace niscolas.UnityUtils.Core
                 CopyUseGravity = true,
                 CopyIsKinematic = true,
                 CopyInterpolation = true,
-                CopyCollisionDetectionMode = true,
+                CopyCollisionDetectionMode = true
             };
 
             Apply(component, handledProperties);

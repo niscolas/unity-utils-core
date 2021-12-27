@@ -2,6 +2,7 @@
 
 namespace niscolas.UnityUtils.Core
 {
+    [AddComponentMenu("")]
     [DisallowMultipleComponent]
     public class OnCollisionExitMonoHook : BaseOnCollisionMonoHook
     {

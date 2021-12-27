@@ -1,17 +1,9 @@
-﻿using niscolas.UnityUtils.Core;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace UnityUtils
+namespace niscolas.UnityUtils.Core
 {
     public class Mirror : ExecuteAlwaysMonoBehaviour
     {
-        private enum MirrorType
-        {
-            None,
-            Copy,
-            Mirror
-        }
-
         [SerializeField]
         private Transform _normalTransform;
 
@@ -117,6 +109,13 @@ namespace UnityUtils
                 default:
                     return currentMirroredValue;
             }
+        }
+
+        private enum MirrorType
+        {
+            None,
+            Copy,
+            Mirror
         }
     }
 }

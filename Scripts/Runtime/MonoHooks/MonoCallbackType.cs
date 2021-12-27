@@ -1,7 +1,8 @@
-﻿namespace UnityUtils
+﻿namespace niscolas.UnityUtils.Core
 {
     public enum MonoCallbackType
     {
+        None,
         Awake,
         OnEnable,
         Start,
@@ -10,7 +11,6 @@
         LateUpdate,
         OnDisable,
         OnDestroy,
-        OnApplicationQuit,
-        None
+        OnApplicationQuit
     }
 }

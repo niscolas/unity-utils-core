@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace UnityExtensions
+namespace niscolas.UnityUtils.Core.Extensions
 {
     public static class ColliderExtensions
     {
@@ -8,7 +8,7 @@ namespace UnityExtensions
         {
             Bounds bounds = collider.bounds;
 
-            Vector3 point = new Vector3(
+            Vector3 point = new(
                 Random.Range(bounds.min.x, bounds.max.x),
                 Random.Range(bounds.min.y, bounds.max.y),
                 Random.Range(bounds.min.z, bounds.max.z)

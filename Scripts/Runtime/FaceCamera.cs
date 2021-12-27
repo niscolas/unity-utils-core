@@ -1,9 +1,6 @@
 ﻿using UnityEngine;
-using niscolas.UnityExtensions;
-using niscolas.UnityUtils.Core;
-using UnityUtils;
 
-namespace niscolas.UnityUtils
+namespace niscolas.UnityUtils.Core
 {
     public class FaceCamera : MonoBehaviour
     {
@@ -13,8 +10,9 @@ namespace niscolas.UnityUtils
         [SerializeField]
         private MonoCallbackType _faceEvent = MonoCallbackType.Update;
 
-        private MonoLifecycleHooksManager _lifecycle;
         private Transform _cameraTransform;
+
+        private MonoLifecycleHooksManager _lifecycle;
 
         private void Awake()
         {

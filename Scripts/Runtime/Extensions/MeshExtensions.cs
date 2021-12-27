@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace niscolas.UnityExtensions
+namespace niscolas.UnityUtils.Core.Extensions
 {
     public static class MeshExtensions
     {

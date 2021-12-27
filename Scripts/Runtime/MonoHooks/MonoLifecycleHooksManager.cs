@@ -1,15 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using niscolas.UnityExtensions;
+using niscolas.UnityUtils.Core.Extensions;
 using UnityEngine;
-using UnityUtils;
 
 namespace niscolas.UnityUtils.Core
 {
     public class MonoLifecycleHooksManager : CachedMonoBehaviour
     {
         private static readonly Dictionary<MonoCallbackType, Type> CallbackAndHookTypeRelation =
-            new Dictionary<MonoCallbackType, Type>
+            new()
             {
                 {MonoCallbackType.Awake, typeof(AwakeMonoHook)},
                 {MonoCallbackType.OnEnable, typeof(OnEnableMonoHook)},
@@ -19,14 +18,24 @@ namespace niscolas.UnityUtils.Core
                 {MonoCallbackType.LateUpdate, typeof(LateUpdateMonoHook)},
                 {MonoCallbackType.OnDisable, typeof(OnDisableMonoHook)},
                 {MonoCallbackType.OnDestroy, typeof(OnDestroyMonoHook)},
-                {MonoCallbackType.OnApplicationQuit, typeof(OnApplicationQuitMonoHook)},
+                {MonoCallbackType.OnApplicationQuit, typeof(OnApplicationQuitMonoHook)}
             };
 
-        private static readonly Dictionary<GameObject, MonoLifecycleHooksManager> Managers =
-            new Dictionary<GameObject, MonoLifecycleHooksManager>();
+        private static readonly Dictionary<GameObject, MonoLifecycleHooksManager> Managers = new();
 
-        private readonly Dictionary<MonoCallbackType, IMonoHook> _hooks = new
-            Dictionary<MonoCallbackType, IMonoHook>();
+        private readonly Dictionary<MonoCallbackType, IMonoHook> _hooks = new();
+
+        protected override void Awake()
+        {
+            base.Awake();
+
+            Managers.Add(_gameObject, this);
+        }
+
+        private void OnDestroy()
+        {
+            Managers.Remove(_gameObject);
+        }
 
         public static void GetOrCreate(GameObject target, out MonoLifecycleHooksManager monoHookManager)
         {
@@ -69,11 +78,11 @@ namespace niscolas.UnityUtils.Core
                 action.Invoke();
                 return;
             }
-            
+
             if (!TryGetMonoHook(
-                monoCallbackType,
-                true,
-                out IMonoHook monoHook))
+                    monoCallbackType,
+                    true,
+                    out IMonoHook monoHook))
             {
                 return;
             }
@@ -84,9 +93,9 @@ namespace niscolas.UnityUtils.Core
         public void RemoveAction(Action action, MonoCallbackType monoCallbackType)
         {
             if (!TryGetMonoHook(
-                monoCallbackType,
-                false,
-                out IMonoHook monoHook))
+                    monoCallbackType,
+                    false,
+                    out IMonoHook monoHook))
             {
                 return;
             }
@@ -133,18 +142,6 @@ namespace niscolas.UnityUtils.Core
             _hooks.Add(monoCallbackType, monoHook);
 
             return true;
-        }
-
-        protected override void Awake()
-        {
-            base.Awake();
-
-            Managers.Add(_gameObject, this);
-        }
-
-        private void OnDestroy()
-        {
-            Managers.Remove(_gameObject);
         }
     }
 }

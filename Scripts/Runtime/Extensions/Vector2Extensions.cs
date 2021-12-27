@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace niscolas.UnityExtensions
+namespace niscolas.UnityUtils.Core.Extensions
 {
     public static class Vector2Extensions
     {
@@ -51,7 +51,7 @@ namespace niscolas.UnityExtensions
                 float horizontalDir = Mathf.Sin(radians);
                 float verticalDir = Mathf.Cos(radians);
 
-                Vector2 spawnDir = new Vector2(verticalDir, horizontalDir);
+                Vector2 spawnDir = new(verticalDir, horizontalDir);
 
                 yield return center + spawnDir * radius;
             }
@@ -72,16 +72,17 @@ namespace niscolas.UnityExtensions
         }
 
         public static bool Contains(
-                this Vector2 self,
-                float value,
-                bool minInclusive = true,
-                bool maxInclusive = true)
+            this Vector2 self,
+            float value,
+            bool minInclusive = true,
+            bool maxInclusive = true)
         {
             bool isGreaterThanMin = false;
             if (minInclusive)
             {
                 isGreaterThanMin = self.x <= value;
-            } else 
+            }
+            else
             {
                 isGreaterThanMin = self.x < value;
             }
@@ -90,7 +91,8 @@ namespace niscolas.UnityExtensions
             if (maxInclusive)
             {
                 isLesserThanMax = self.y >= value;
-            } else 
+            }
+            else
             {
                 isLesserThanMax = self.y > value;
             }

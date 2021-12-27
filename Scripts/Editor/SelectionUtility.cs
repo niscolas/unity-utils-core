@@ -1,12 +1,11 @@
-﻿using System;
-using UnityEditor;
-using Object = UnityEngine.Object;
+﻿using UnityEditor;
+using UnityEngine;
 
 namespace niscolas.UnityUtils.Core.Editor
 {
     public static class SelectionUtility
     {
-        public static void ForeachAsset(Action<Object> action)
+        public static void ForeachAsset(System.Action<Object> action)
         {
             foreach (Object selectedAsset in Selection.GetFiltered<Object>(SelectionMode.Assets))
             {

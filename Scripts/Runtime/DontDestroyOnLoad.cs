@@ -1,17 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 namespace niscolas.UnityUtils.Core
 {
     public class DontDestroyOnLoad : AutoTriggerMonoBehaviour
     {
+        private static readonly List<string> ActiveIds = new();
+
         [SerializeField]
         private GameObject _target;
 
         [SerializeField]
         private string _id;
-        
+
         private GameObject Target
         {
             get
@@ -25,7 +26,10 @@ namespace niscolas.UnityUtils.Core
             }
         }
 
-        private static readonly List<string> ActiveIds = new List<string>();
+        private void OnDestroy()
+        {
+            ActiveIds.Remove(_id);
+        }
 
         public override void Do()
         {
@@ -34,14 +38,9 @@ namespace niscolas.UnityUtils.Core
                 Destroy(gameObject);
                 return;
             }
-            
+
             ActiveIds.Add(_id);
             DontDestroyOnLoad(Target);
-        }
-
-        private void OnDestroy()
-        {
-            ActiveIds.Remove(_id);
         }
     }
 }

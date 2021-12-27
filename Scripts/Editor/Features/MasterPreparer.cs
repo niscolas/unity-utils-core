@@ -12,11 +12,10 @@ namespace niscolas.UnityUtils.Core.Editor
 {
     public static class MasterPreparer
     {
-        public static bool IsEnabled { get; set; } = true;
-
         public static Action BeforePrepared;
         public static Action Preparing;
         public static Action AfterPrepared;
+        public static bool IsEnabled { get; set; } = true;
 
         [InitializeOnLoadMethod]
         private static void Init()

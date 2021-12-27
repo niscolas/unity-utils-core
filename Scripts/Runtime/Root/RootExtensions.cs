@@ -1,4 +1,4 @@
-﻿using niscolas.UnityExtensions;
+﻿using niscolas.UnityUtils.Core.Extensions;
 using UnityEngine;
 
 namespace niscolas.UnityUtils.Core

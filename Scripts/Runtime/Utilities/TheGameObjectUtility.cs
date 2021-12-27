@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using niscolas.UnityUtils.Core.Editor;
 using UnityEngine;
 
 namespace niscolas.UnityUtils.Core

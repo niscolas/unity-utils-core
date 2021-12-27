@@ -14,7 +14,7 @@ namespace niscolas.UnityUtils.Core.Editor
                 return;
             }
 
-            blendTree = Object.Instantiate<BlendTree>(blendTree);
+            blendTree = Object.Instantiate(blendTree);
             AssetDatabase.CreateAsset(blendTree, $"Assets/{blendTree.name}.asset");
         }
     }

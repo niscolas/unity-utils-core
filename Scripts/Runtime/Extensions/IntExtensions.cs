@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using UnityEngine;
 
-namespace niscolas.UnityExtensions
+namespace niscolas.UnityUtils.Core.Extensions
 {
     public static class IntExtensions
     {
@@ -28,14 +27,14 @@ namespace niscolas.UnityExtensions
         {
             if (from < to)
             {
-                for (int i = from; i < to; i++)
+                for (int i = @from; i < to; i++)
                 {
                     yield return i;
                 }
             }
             else
             {
-                for (int i = from; i > to; i--)
+                for (int i = @from; i > to; i--)
                 {
                     yield return i;
                 }

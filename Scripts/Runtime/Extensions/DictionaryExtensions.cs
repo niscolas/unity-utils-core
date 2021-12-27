@@ -1,13 +1,13 @@
 ﻿using System.Collections.Generic;
 
-namespace niscolas.UnityExtensions
+namespace niscolas.UnityUtils.Core.Extensions
 {
     public static class DictionaryExtensions
     {
-        public static void AddManyKeys<TKey, TValue> (
-            this IDictionary<TKey, TValue> dictionary, 
-            IEnumerable<TKey> keys, 
-            TValue value )
+        public static void AddManyKeys<TKey, TValue>(
+            this IDictionary<TKey, TValue> dictionary,
+            IEnumerable<TKey> keys,
+            TValue value)
         {
             foreach (TKey key in keys)
             {

@@ -10,8 +10,6 @@ namespace niscolas.UnityUtils.Core
         where TProperties : IComponentProperties<TComponent, THandledProperties>
         where THandledProperties : HandledProperties
     {
-        internal TComponent Component { get; set; }
-
         private TProperties _originalProperties;
 
         protected THandledProperties HandledProperties;
@@ -28,6 +26,8 @@ namespace niscolas.UnityUtils.Core
             Component = component;
             HandledProperties = handledProperties;
         }
+
+        internal TComponent Component { get; set; }
 
         protected abstract TProperties ExtractPropertiesFrom(TComponent component);
 
@@ -66,7 +66,7 @@ namespace niscolas.UnityUtils.Core
 
             ApplyProperties(properties, Component, handledProperties);
         }
-        
+
         public void ApplyProperties(
             TProperties properties, TComponent targetComponent, THandledProperties handledProperties)
         {

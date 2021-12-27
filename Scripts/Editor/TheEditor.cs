@@ -10,7 +10,7 @@ namespace niscolas.UnityUtils.Core.Editor
         public static event Action ExitingEditMode;
         public static event Action ExitingPlayMode;
 
-        
+
         [InitializeOnLoadMethod]
         private static void Init()
         {

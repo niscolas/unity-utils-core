@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using niscolas.UnityExtensions;
+using niscolas.UnityUtils.Core.Extensions;
 using UnityEngine;
 
 namespace niscolas.UnityUtils.Core
@@ -18,7 +18,7 @@ namespace niscolas.UnityUtils.Core
                 return;
             }
 
-            TCopy copy = new TCopy
+            TCopy copy = new()
             {
                 Component = component
             };
@@ -35,7 +35,7 @@ namespace niscolas.UnityUtils.Core
                 return;
             }
 
-            TCopy copy = new TCopy
+            TCopy copy = new()
             {
                 Component = component
             };
@@ -44,6 +44,7 @@ namespace niscolas.UnityUtils.Core
 
             Add(copy);
         }
+
         public void ResetProperties(TComponent component)
         {
             if (!Contains(component) ||
