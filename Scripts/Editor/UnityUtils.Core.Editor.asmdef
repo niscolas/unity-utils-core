@@ -1,18 +1,18 @@
 {
-  "name": "UnityUtils.Core.Editor",
-  "rootNamespace": "",
-  "references": [
-    "GUID:9104f28baed89644286c65222185ea59"
-  ],
-  "includePlatforms": [
-    "Editor"
-  ],
-  "excludePlatforms": [],
-  "allowUnsafeCode": false,
-  "overrideReferences": false,
-  "precompiledReferences": [],
-  "autoReferenced": true,
-  "defineConstraints": [],
-  "versionDefines": [],
-  "noEngineReferences": false
+    "name": "UnityUtils.Core.Editor",
+    "rootNamespace": "",
+    "references": [
+        "GUID:9104f28baed89644286c65222185ea59"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
 }

@@ -2,7 +2,7 @@
 
 namespace niscolas.UnityUtils.Core
 {
-    public class Mirror : ExecuteAlwaysMonoBehaviour
+    public class Mirror : ScriptExecutionModeBasedMonoBehaviour
     {
         [SerializeField]
         private Transform _normalTransform;
