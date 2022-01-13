@@ -4,7 +4,7 @@ using UnityEngine.Events;
 namespace niscolas.UnityUtils.Core
 {
     [AddComponentMenu(Constants.AddComponentMenuPrefix + "Mono Behaviour Unity Event")]
-    public class MonoBehaviourUnityEventMB : CachedMonoBehaviour
+    public class MonoBehaviourUnityEventMB : CachedMB
     {
         [SerializeField]
         private MonoBehaviourEventType _triggerMoment;

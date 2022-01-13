@@ -6,7 +6,7 @@ using UnityEngine.Video;
 namespace niscolas.UnityUtils.Core
 {
     [AddComponentMenu(Constants.AddComponentMenuPrefix + "Video Player Control")]
-    public class VideoPlayerControlMB : CachedMonoBehaviour
+    public class VideoPlayerControlMB : CachedMB
     {
         [SerializeField]
         private VideoPlayer _videoPlayer;

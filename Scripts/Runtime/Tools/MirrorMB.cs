@@ -3,7 +3,7 @@
 namespace niscolas.UnityUtils.Core
 {
     [AddComponentMenu(Constants.AddComponentMenuPrefix + "Mirror")]
-    public class MirrorMB : ScriptExecutionModeBasedMonoBehaviour
+    public class MirrorMB : ScriptExecutionModeBasedMB
     {
         [SerializeField]
         private Transform _normalTransform;

@@ -2,7 +2,7 @@
 
 namespace niscolas.UnityUtils.Core
 {
-    public abstract class AutoTriggerMB : CachedMonoBehaviour
+    public abstract class AutoTriggerMB : CachedMB
     {
         [SerializeField]
         private MonoBehaviourEventType _autoTriggerCallback;

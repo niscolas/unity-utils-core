@@ -7,7 +7,7 @@ using UnityEngine.Events;
 namespace niscolas.UnityUtils.Core
 {
     [AddComponentMenu(Constants.AddComponentMenuPrefix + "Linear Layout Group 3D")]
-    public class LinearLayoutGroup3DMB : CachedMonoBehaviour
+    public class LinearLayoutGroup3DMB : CachedMB
     {
         [Required]
         [SerializeField]

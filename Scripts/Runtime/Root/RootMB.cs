@@ -5,7 +5,7 @@ namespace niscolas.UnityUtils.Core
 {
     [AddComponentMenu(Constants.AddComponentMenuPrefix + "Root")]
     [SelectionBase]
-    public class RootMB : CachedMonoBehaviour
+    public class RootMB : CachedMB
     {
         private static readonly HashSet<GameObject> RootGameObjects = new();
 

@@ -4,7 +4,7 @@ using UnityEngine.Events;
 namespace niscolas.UnityUtils.Core
 {
     [AddComponentMenu(Constants.AddComponentMenuPrefix + "Switch")]
-    public class SwitchMB : CachedMonoBehaviour
+    public class SwitchMB : CachedMB
     {
         [SerializeField]
         private bool _currentState;

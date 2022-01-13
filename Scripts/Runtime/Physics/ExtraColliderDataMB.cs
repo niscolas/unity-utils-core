@@ -6,7 +6,7 @@ namespace niscolas.UnityUtils.Core
 {
     [AddComponentMenu(Constants.AddComponentMenuPrefix + "Extra Collider Data")]
     [DisallowMultipleComponent]
-    public class ExtraColliderDataMB : CachedMonoBehaviour
+    public class ExtraColliderDataMB : CachedMB
     {
         [SerializeField]
         private Collider _collider;

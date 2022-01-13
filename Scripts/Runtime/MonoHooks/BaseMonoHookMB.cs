@@ -2,7 +2,7 @@
 
 namespace niscolas.UnityUtils.Core
 {
-    public abstract class BaseMonoHookMB : CachedMonoBehaviour, IMonoHook
+    public abstract class BaseMonoHookMB : CachedMB, IMonoHook
     {
         public void Subscribe(Action action)
         {

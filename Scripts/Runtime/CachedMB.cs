@@ -2,7 +2,7 @@
 
 namespace niscolas.UnityUtils.Core
 {
-    public class CachedMonoBehaviour : MonoBehaviour
+    public class CachedMB : MonoBehaviour
     {
         protected GameObject _gameObject;
         protected Transform _transform;

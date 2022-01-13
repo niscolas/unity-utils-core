@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace niscolas.UnityUtils.Core
 {
-    public class MonoHooksManagerMB : CachedMonoBehaviour
+    public class MonoHooksManagerMB : CachedMB
     {
         private static readonly Dictionary<MonoBehaviourEventType, Type> CallbackAndHookTypeRelation =
             new()

@@ -9,7 +9,6 @@ namespace niscolas.UnityUtils.Core
         [SerializeField]
         private Camera _camera;
 
-        private MonoHooksManagerMB _lifecycle;
         private Transform _cameraTransform;
 
         protected override void Awake()

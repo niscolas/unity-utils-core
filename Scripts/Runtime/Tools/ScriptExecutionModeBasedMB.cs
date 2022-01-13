@@ -3,7 +3,7 @@
 namespace niscolas.UnityUtils.Core
 {
     [ExecuteAlways]
-    public abstract class ScriptExecutionModeBasedMonoBehaviour : CachedMonoBehaviour
+    public abstract class ScriptExecutionModeBasedMB : CachedMB
     {
         [SerializeField]
         private ScriptExecutionMode _executionMode = ScriptExecutionMode.All;
