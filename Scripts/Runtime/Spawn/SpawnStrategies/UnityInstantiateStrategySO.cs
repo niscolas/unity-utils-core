@@ -3,7 +3,7 @@
 namespace niscolas.UnityUtils.Core
 {
     [CreateAssetMenu(
-        menuName = Constants.CoreCreateAssetMenuPrefix + "Unity Instantiate Strategy",
+        menuName = Constants.CreateAssetMenuPrefix + "Unity Instantiate Strategy",
         order = Constants.CreateAssetMenuOrder)]
     public class UnityInstantiateStrategySO : ServiceBasedSpawnStrategySO<UnityInstantiateService> { }
 }

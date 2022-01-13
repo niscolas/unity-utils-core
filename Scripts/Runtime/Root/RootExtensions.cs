@@ -12,7 +12,7 @@ namespace niscolas.UnityUtils.Core
 
         public static bool IsRoot(this GameObject gameObject)
         {
-            return Core.RootMonoBehaviour.CheckIsRoot(gameObject);
+            return Core.RootMB.CheckIsRoot(gameObject);
         }
 
         public static GameObject Root(this Component component)
@@ -27,7 +27,7 @@ namespace niscolas.UnityUtils.Core
                 return gameObject;
             }
 
-            RootMonoBehaviour root = gameObject.GetComponentInParent<RootMonoBehaviour>();
+            RootMB root = gameObject.GetComponentInParent<RootMB>();
 
             if (root)
             {
