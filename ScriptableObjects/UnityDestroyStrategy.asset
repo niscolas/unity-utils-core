@@ -9,8 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f3e075656514fea9e0be68183eab0b2, type: 3}
-  m_Name: SetCursorLockState-Confined
+  m_Script: {fileID: 11500000, guid: ca3239d71a694cd9b7307efdc46c98c8, type: 3}
+  m_Name: UnityDestroyStrategy
   m_EditorClassIdentifier: 
-  _developerDescription: 
-  _lockMode: 2
