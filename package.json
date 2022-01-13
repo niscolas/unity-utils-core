@@ -2,8 +2,5 @@
     "name": "com.niscolas.unity-utils.core",
     "version": "0.2.0",
     "displayName": "UnityUtils.Core",
-    "unity": "2019.1",
-    "dependencies": {
-        "com.cysharp.unitask": "2.2.5"
-    }
+    "unity": "2019.1"
 }
