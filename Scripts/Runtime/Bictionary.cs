@@ -5,8 +5,8 @@ namespace niscolas.UnityUtils.Core
 {
     public class Bictionary<T1, T2>
     {
-        private readonly Dictionary<T2, T1> _backwards = new();
-        private readonly Dictionary<T1, T2> _forwards = new();
+        private readonly Dictionary<T2, T1> _backwards = new Dictionary<T2, T1>();
+        private readonly Dictionary<T1, T2> _forwards = new Dictionary<T1, T2>();
 
         public Bictionary() { }
 

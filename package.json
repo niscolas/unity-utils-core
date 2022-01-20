@@ -1,6 +1,6 @@
 {
     "name": "com.niscolas.unity-utils.core",
-    "version": "0.2.0",
+    "version": "0.2.1",
     "displayName": "UnityUtils.Core",
     "unity": "2019.1"
 }

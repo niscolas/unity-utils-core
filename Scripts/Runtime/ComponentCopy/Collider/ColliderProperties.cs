@@ -13,7 +13,7 @@ namespace niscolas.UnityUtils.Core
 
         public void ApplyAll(Collider component)
         {
-            ColliderHandledProperties handledProperties = new()
+            ColliderHandledProperties handledProperties = new ColliderHandledProperties()
             {
                 CopyPhysicMaterial = true
             };

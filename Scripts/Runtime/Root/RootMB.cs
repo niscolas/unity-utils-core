@@ -7,7 +7,7 @@ namespace niscolas.UnityUtils.Core
     [SelectionBase]
     public class RootMB : CachedMB
     {
-        private static readonly HashSet<GameObject> RootGameObjects = new();
+        private static readonly HashSet<GameObject> RootGameObjects = new HashSet<GameObject>();
 
         protected override void Awake()
         {

@@ -8,7 +8,7 @@ namespace niscolas.UnityUtils.Core
     public class MonoHooksManagerMB : CachedMB
     {
         private static readonly Dictionary<MonoBehaviourEventType, Type> CallbackAndHookTypeRelation =
-            new()
+            new Dictionary<MonoBehaviourEventType, Type>()
             {
                 {MonoBehaviourEventType.Awake, typeof(AwakeMonoHookMB)},
                 {MonoBehaviourEventType.OnEnable, typeof(OnEnableMonoHookMB)},
@@ -21,9 +21,9 @@ namespace niscolas.UnityUtils.Core
                 {MonoBehaviourEventType.OnApplicationQuit, typeof(OnApplicationQuitMonoHookMB)}
             };
 
-        private static readonly Dictionary<GameObject, MonoHooksManagerMB> Managers = new();
+        private static readonly Dictionary<GameObject, MonoHooksManagerMB> Managers = new Dictionary<GameObject, MonoHooksManagerMB>();
 
-        private readonly Dictionary<MonoBehaviourEventType, IMonoHook> _hooks = new();
+        private readonly Dictionary<MonoBehaviourEventType, IMonoHook> _hooks = new Dictionary<MonoBehaviourEventType, IMonoHook>();
 
         protected override void Awake()
         {

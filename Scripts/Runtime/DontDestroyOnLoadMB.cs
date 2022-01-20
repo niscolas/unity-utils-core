@@ -7,7 +7,7 @@ namespace niscolas.UnityUtils.Core
     [DisallowMultipleComponent]
     public class DontDestroyOnLoadMB : AutoTriggerMB
     {
-        private static readonly List<string> ActiveIds = new();
+        private static readonly List<string> ActiveIds = new List<string>();
 
         [SerializeField]
         private GameObject _target;

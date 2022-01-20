@@ -13,7 +13,7 @@ namespace niscolas.UnityUtils.Core
 
         protected override RigidbodyProperties ExtractPropertiesFrom(Rigidbody component)
         {
-            RigidbodyProperties properties = new()
+            RigidbodyProperties properties = new RigidbodyProperties()
             {
                 Mass = component.mass,
                 Drag = component.drag,

@@ -51,7 +51,7 @@ namespace niscolas.UnityUtils.Core.Extensions
                 float horizontalDir = Mathf.Sin(radians);
                 float verticalDir = Mathf.Cos(radians);
 
-                Vector2 spawnDir = new(verticalDir, horizontalDir);
+                Vector2 spawnDir = new Vector2(verticalDir, horizontalDir);
 
                 yield return center + spawnDir * radius;
             }

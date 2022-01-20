@@ -4,7 +4,7 @@ namespace niscolas.UnityUtils.Core.Extensions
 {
     public static class FloatExtensions
     {
-        private static readonly Random _random = new();
+        private static readonly Random _random = new Random();
 
         public static float Round(this float number, int decimalPlaces)
         {

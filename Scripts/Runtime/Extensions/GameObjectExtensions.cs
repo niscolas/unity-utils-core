@@ -137,7 +137,7 @@ namespace niscolas.UnityUtils.Core.Extensions
 
         public static List<GameObject> FindChildrenWithTag(this Transform parent, string tag)
         {
-            List<GameObject> taggedGameObjects = new();
+            List<GameObject> taggedGameObjects = new List<GameObject>();
 
             for (int i = 0; i < parent.childCount; i++)
             {

@@ -11,7 +11,7 @@ namespace niscolas.UnityUtils.Core
 
         protected override ColliderProperties ExtractPropertiesFrom(Collider component)
         {
-            ColliderProperties originalProperties = new()
+            ColliderProperties originalProperties = new ColliderProperties()
             {
                 PhysicMaterial = component.sharedMaterial
             };

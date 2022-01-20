@@ -18,7 +18,7 @@ namespace niscolas.UnityUtils.Core
                 return;
             }
 
-            TCopy copy = new()
+            TCopy copy = new TCopy()
             {
                 Component = component
             };
@@ -35,7 +35,7 @@ namespace niscolas.UnityUtils.Core
                 return;
             }
 
-            TCopy copy = new()
+            TCopy copy = new TCopy()
             {
                 Component = component
             };
