@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace niscolas.UnityUtils.Core.Extensions
 {
@@ -154,6 +155,13 @@ namespace niscolas.UnityUtils.Core.Extensions
             }
 
             return taggedGameObjects;
+        }
+
+        public static void MoveToActiveScene(this GameObject self)
+        {
+            SceneManager.MoveGameObjectToScene(
+                self,
+                SceneManager.GetActiveScene());
         }
 
         public static void SetComponentsState(this GameObject gameObject, bool shouldEnable,

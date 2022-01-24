@@ -29,5 +29,10 @@ namespace niscolas.UnityUtils.Core.Extensions
             object instance = Activator.CreateInstance(finalType);
             return instance;
         }
+
+        public static bool IsSameOfSubclassOf(this Type self, Type other)
+        {
+            return self == other || self.IsSubclassOf(other);
+        }
     }
 }

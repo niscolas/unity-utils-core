@@ -7,6 +7,65 @@ namespace niscolas.UnityUtils.Core.Extensions
 {
     public static class ListExtensions
     {
+        public static void AddIfNotContains<T>(this IList<T> list, T element)
+        {
+            if (list == null || list.Contains(element))
+            {
+                return;
+            }
+
+            list.Add(element);
+        }
+
+        public static void AddRange<T>(this IList<T> list, IReadOnlyList<T> otherEnumerable, int count)
+        {
+            for (int i = 0; i < count; i++)
+            {
+                list.Add(otherEnumerable[i]);
+            }
+        }
+
+        public static void ForEach<T>(this IList<T> self, Action<T, int> action)
+        {
+            for (int i = 0; i < self.Count; i++)
+            {
+                action(self[i], i);
+            }
+        }
+
+        public static int IndexOfParentItem<TParent, TChild>(this IList<TChild> self, TParent item)
+        {
+            if (item is TChild downCastedItem)
+            {
+                return self.IndexOf(downCastedItem);
+            }
+            else
+            {
+                return -1;
+            }
+        }
+
+        public static void InsertParentItem<TParent, TChild>(this IList<TChild> self, int index, TParent item)
+        {
+            if (item is TChild downCastedItem)
+            {
+                self.Insert(index, downCastedItem);
+            }
+        }
+
+        public static bool IsNullOrEmpty<T>(this IList<T> list)
+        {
+            return list == null || list.Count == 0;
+        }
+
+        public static void RemoveRange<T>(this IList<T> list, IEnumerable<T> elementsToRemove)
+        {
+            foreach (T element in elementsToRemove.Where(list.Contains))
+            {
+                list.Remove(element);
+            }
+        }
+
         public static void Replace<T>(this IList<T> list, T current, T replacement)
         {
             int index = list.IndexOf(current);
@@ -16,12 +75,11 @@ namespace niscolas.UnityUtils.Core.Extensions
             }
         }
 
-        public static void RemoveRange<T>(this IList<T> list, IEnumerable<T> elementsToRemove)
+        public static void ReplaceContent<T>(
+            this IList<T> self, IEnumerable<T> other)
         {
-            foreach (T element in elementsToRemove.Where(list.Contains))
-            {
-                list.Remove(element);
-            }
+            self.Clear();
+            self.AddRange(other);
         }
 
         public static void SafeForEach<T>(this IList<T> list, Action<T> action, bool removeNullElements = true)
@@ -47,16 +105,6 @@ namespace niscolas.UnityUtils.Core.Extensions
             }
         }
 
-        public static void AddIfNotContains<T>(this IList<T> list, T element)
-        {
-            if (list == null || list.Contains(element))
-            {
-                return;
-            }
-
-            list.Add(element);
-        }
-
         public static void SafeRemove<T>(this IList<T> list, T element)
         {
             if (list.IsNullOrEmpty())
@@ -70,37 +118,34 @@ namespace niscolas.UnityUtils.Core.Extensions
             }
         }
 
-        public static void Shuffle<T>(this IList<T> list)
+        public static void Shuffle<T>(this IList<T> self)
         {
-            int count = list.Count;
-            int last = count - 1;
-            for (int i = 0; i < last; ++i)
+            int GetRandomIndex(int i)
             {
-                int r = Random.Range(i, count);
-                T tmp = list[i];
-                list[i] = list[r];
-                list[r] = tmp;
+                return UnityEngine.Random.Range(0, i + 1);
+            }
+
+            self.Shuffle(GetRandomIndex);
+        }
+
+        public static void Shuffle<T>(this IList<T> self, Func<int, int> randomIndexFunc)
+        {
+            for (int i = self.Count - 1; i > 0; i--)
+            {
+                int randomIndex = randomIndexFunc(i);
+
+                (self[i], self[randomIndex]) = (self[randomIndex], self[i]);
             }
         }
 
-        public static void AddRange<T>(this IList<T> list, IReadOnlyList<T> otherEnumerable, int count)
+        public static void Shuffle<T>(this IList<T> self, System.Random random)
         {
-            for (int i = 0; i < count; i++)
+            int GetRandomIndex(int i)
             {
-                list.Add(otherEnumerable[i]);
+                return random.Next(0, i + 1);
             }
-        }
 
-        public static bool IsNullOrEmpty<T>(this IList<T> list)
-        {
-            return list == null || list.Count == 0;
-        }
-
-        public static void ReplaceContent<T>(
-            this IList<T> self, IEnumerable<T> other)
-        {
-            self.Clear();
-            self.AddRange(other);
+            self.Shuffle(GetRandomIndex);
         }
     }
 }
