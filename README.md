@@ -1,10 +1,15 @@
-﻿# :sunny: UnityUtils.Core
-> :bulb: The main dependency for my other Unity reusable modules
+﻿# ☀ UnityUtils.Core
+> 💡 The main dependency for my other Unity reusable modules
 
-## :nut_and_bolt: Installation
-1. Clone :arrow_down: this repo inside your Unity project;
-2. Install the dependencies :point_down:
+## 🔩 Installation
+1. Go to `Window > Package Manager`
+2. Click on the `+` button on the top left
+3. Select `Add package from git URL...`
+4. Paste the URL below :point_down:
+```
+https://github.com/niscolas/unity-utils-core.git
+```
+5. Click on the `Add` button
 
-## :chains: Dependencies
-- [:hammer: Odin Inspector Attributes DLL or Stub File](https://discord.com/channels/355444042009673728/355817720182341632/898236644270964787)
-
+## 📜 License
+MIT

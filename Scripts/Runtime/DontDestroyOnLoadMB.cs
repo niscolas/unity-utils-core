@@ -3,7 +3,6 @@ using UnityEngine;
 
 namespace niscolas.UnityUtils.Core
 {
-    [AddComponentMenu(Constants.AddComponentMenuPrefix + "Dont Destroy on Load")]
     [DisallowMultipleComponent]
     public class DontDestroyOnLoadMB : AutoTriggerMB
     {
