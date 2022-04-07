@@ -2,5 +2,10 @@
     "name": "com.niscolas.unity-utils.core",
     "version": "0.2.3",
     "displayName": "niscolas.UnityUtils.Core",
-    "unity": "2019.1"
+    "description": "💡 The main dependency for my other Unity reusable modules",
+    "unity": "2019.1",
+    "author": {
+        "name": "niscolas",
+        "email": "nic.cp@hotmail.com"
+    }
 }
